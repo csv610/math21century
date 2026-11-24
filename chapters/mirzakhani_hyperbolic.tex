@@ -107,11 +107,15 @@ Imagine you have a vast landscape of possible saddle-shaped surfaces, each descr
 \subsection{Recursive Formula for Weil--Petersson Volumes (2007--2008)}
 
 \begin{theorem}[Mirzakhani, 2007 \cite{mirzakhani2007}]
-The volume of the moduli space $\mathcal{M}_{g,n}(L_1, \ldots, L_n)$ with respect to the Weil--Petersson metric satisfies a recursive formula:
+Writing $\mathbf L=(L_1,\ldots,L_n)$, the Weil--Petersson volume
+of $\mathcal{M}_{g,n}(\mathbf L)$ is a polynomial in the boundary
+lengths and satisfies Mirzakhani's recursion:
 \begin{equation}
-V_{g,n}(L_1, \ldots, L_n) = \int_{\mathcal{M}_{g,n}(L_1, \ldots, L_n)} e^{-\omega_{WP}}
+ V_{g,n}(\mathbf L) = \int_{\mathcal{M}_{g,n}(\mathbf L)}
+ \frac{\omega_{WP}^{\,3g-3+n}}{(3g-3+n)!}.
 \end{equation}
-where $V_{g,n}$ is a polynomial in the boundary lengths $L_i$ of degree $3g-3+n$.
+The recursion expresses this volume in terms of volumes with lower
+complexity, and $V_{g,n}$ has degree $6g-6+2n$ in the lengths.
 \end{theorem}
 
 The recursion is:

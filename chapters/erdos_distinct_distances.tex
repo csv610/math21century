@@ -171,7 +171,10 @@ def line_points(n):
 
 # Points on a circle
 def circle_points(n):
-    return [(math.cos(2*math.pi*k/n), math.sin(2*math.pi*k/n)) for k in range(n)]
+    return [
+        (math.cos(2*math.pi*k/n), math.sin(2*math.pi*k/n))
+        for k in range(n)
+    ]
 
 print("Configuration          | n   | distinct distances")
 print("-" * 50)

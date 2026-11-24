@@ -62,15 +62,15 @@ Wolff conjectured that any Kakeya set in $\mathbb{F}_q^n$ satisfies $|K| \geq C_
 \section{The Solution}
 
 \subsection{The Big Idea}
-A Kakeya set in $\mathbb{R}^n$ contains a line segment in every direction. Besicovitch showed in 1919 it can have zero volume; the question is whether its Hausdorff dimension must be $n$. In $\mathbb{R}^2$, Davies proved dimension 2 in 1971. In $\mathbb{R}^3$, Fourier-analytic methods were stuck below dimension 2.5 for decades. Wang and Zahl's breakthrough used \textbf{polynomial partitioning}: given a Kakeya set $K$, construct a degree-$d$ polynomial $P$ that vanishes on a carefully chosen subset of the Kakeya lines. The zero set of $P$ divides $\mathbb{R}^3$ into $O(d^3)$ cells, each containing relatively few lines. Inside each cell, the lines are sparse enough that their dimension can be controlled. Across cells, the polynomial's degree constrains how many lines can be parallel in each region---if Kakeya sets had dimension below $2.5$, the polynomial could be chosen to force a contradiction between the number of cells and the number of line directions. The key innovation was combining this with \textbf{linear programming bounds} (optimizing over line configurations to extract dimensional lower bounds) and \textbf{new incidence geometry} (sharp point-line incidence bounds in $\mathbb{R}^3$). Together these tools broke the 2.5 barrier, proving dimension $\geq 2.5 + \epsilon$.
+A Kakeya set in $\mathbb{R}^n$ contains a line segment in every direction. Besicovitch showed in 1919 that it can have zero volume. Davies proved the two-dimensional case in 1971, and Wang and Zahl established the full Hausdorff and Minkowski dimension bound in $\mathbb{R}^3$ in 2025. Their proof uses multiscale geometric estimates and incidence theory rather than merely the earlier $2.5+\epsilon$ lower bound.
 
 \subsection{What Was Stopping Progress}
-In two dimensions, Davies proved in 1971 that Kakeya sets must have full dimension 2. In three dimensions, Fourier-analytic methods---restriction theory, decoupling, endpoint estimates---kept improving the lower bound but always hit the same ceiling around 2.5.
+In two dimensions, Davies proved in 1971 that Kakeya sets must have full dimension 2. In three dimensions, Fourier-analytic methods---restriction theory, decoupling, endpoint estimates---had long hit a ceiling around 2.5 before the Wang--Zahl work.
 
 The polynomial method that Dvir used so brilliantly for the finite field case (2008) had no direct translation to the real setting. Over a finite field $\mathbb{F}_q$, a polynomial of degree less than $q$ that vanishes on a line must vanish everywhere---this is a finiteness fact: a nonzero univariate polynomial of degree $d$ has at most $d$ roots, so if $d < q$ and the polynomial vanishes on all $q$ points of a line, it must be the zero polynomial. But over $\mathbb{R}$, lines have infinitely many points and there is no degree bound---a nonzero polynomial can vanish on an entire line without being zero. This means Dvir's argument, which directly constructed a low-degree polynomial vanishing on a Kakeya set, cannot work over $\mathbb{R}$. The challenge was to find a way to use polynomials without requiring them to vanish on entire lines.
 
 \subsection{The Breakthrough}
-Wang and Zahl adapted the polynomial method from the discrete to the continuous by combining three innovations: (1) \textbf{polynomial partitioning}, introduced by Guth and Katz, which decomposes space into cells each containing relatively few Kakeya lines; (2) \textbf{linear programming bounds} that optimize over families of line configurations to extract dimensional lower bounds; and (3) \textbf{new incidence geometry} giving sharp bounds on point-line incidences in three dimensions. Together these tools broke through the 2.5 barrier, proving that Kakeya sets in $\mathbb{R}^3$ have Hausdorff dimension at least $2.5 + \epsilon$ for an absolute $\epsilon > 0$. The full conjecture (dimension $n$ in $\mathbb{R}^n$) remains open, but the gap has narrowed dramatically.
+Wang and Zahl combined multiscale estimates for tube configurations with incidence geometry to prove that Kakeya sets in $\mathbb{R}^3$ have Hausdorff and Minkowski dimension 3. The full conjecture in dimensions $n\geq4$ remains open.
 
 \subsection{How It Works}
 
@@ -86,7 +86,7 @@ Any Kakeya set $K \subset \mathbb{F}_q^n$ satisfies:
 
 The proof is elegant: if $|K| < \binom{n+q-1}{n}$, there exists a non-zero polynomial of degree $<q$ vanishing on $K$. By complete induction along line directions, the polynomial's highest degree homogeneous part must vanish on all of $\mathbb{F}_q^n$, which is impossible.
 
-\subsection{The 3D Real Breakthrough: Wang--Zahl (2023--2025)}
+\subsection{The 3D Real Breakthrough: Wang--Zahl (2025)}
 
 The polynomial method had been spectacularly successful for the finite field Kakeya problem, but extending it to the real setting $\mathbb{R}^n$ had resisted all attempts for decades. The breakthrough came from Hong Wang (NYU) and Joshua Zahl (UBC).
 
@@ -95,7 +95,7 @@ Hong Wang (born 1992, China) brought deep expertise in polynomial partitioning a
 \end{historicalbox}
 
 \begin{theorem}[Wang--Zahl, 2025 \cite{wangzahl2025}]
-Any Kakeya set $K \subset \mathbb{R}^3$ has Hausdorff dimension at least $2.5 + \epsilon$ for an absolute constant $\epsilon > 0$.
+Any Kakeya set $K \subset \mathbb{R}^3$ has Hausdorff and Minkowski dimension $3$.
 \end{theorem}
 
 Their proof combined three major innovations:
@@ -107,20 +107,20 @@ Their proof combined three major innovations:
 \end{enumerate}
 
 \begin{highlightbox}
-The Wang--Zahl result broke the long-standing ``2.5 dimension barrier'' in $\mathbb{R}^3$. The full Kakeya conjecture---that Kakeya sets in $\mathbb{R}^n$ have Hausdorff dimension $n$---remains open for $n \geq 3$, but the gap between the best lower bound and the conjectured value has narrowed dramatically.
+The Wang--Zahl result settles the Kakeya dimension conjecture in three dimensions. The corresponding Euclidean conjecture in dimensions $n\geq4$ remains open.
 \end{highlightbox}
 
 \subsection{Hong Wang and the Fields Medal}
 
-In 2026, Hong Wang was awarded the Fields Medal at the International Congress of Mathematicians in Philadelphia, becoming the third woman to receive the prize (after Maryam Mirzakhani in 2014 and Maryna Viazovska in 2022). Her work demonstrated that algebraic techniques are powerful enough to attack real-variable problems that had resisted Fourier-analytic methods for decades. The polynomial method she and Zahl deployed has direct implications for the restriction conjecture in harmonic analysis and for bounding energy concentration during wave propagation---problems where Kakeya-type sets appear as obstruction geometry.
+In 2026, Hong Wang was awarded the Fields Medal at the International Congress of Mathematicians in Philadelphia, becoming the third woman to receive the prize (after Maryam Mirzakhani in 2014 and Maryna Viazovska in 2022). Her work demonstrated that geometric and combinatorial techniques can attack real-variable problems that had resisted Fourier-analytic methods for decades. Kakeya-type configurations remain central to the restriction conjecture and to estimates for wave propagation.
 
 \subsection{After the Proof}
 
-The Kakeya conjecture is partially settled. The finite field case was proved by Dvir in 2008, and in $\mathbb{R}^3$, Wang and Zahl proved in 2025 that Kakeya sets have Hausdorff dimension at least $2.5 + \varepsilon$. In $\mathbb{R}^2$, the full conjecture (dimension 2) was settled by Davies in 1971.
+The Kakeya conjecture is settled in dimensions 2 and 3, and in the finite-field model. In $\mathbb{R}^3$, Wang and Zahl proved in 2025 that Kakeya sets have Hausdorff and Minkowski dimension 3. The general Euclidean problem in dimensions $n\geq4$ remains open.
 
-The Wang--Zahl breakthrough broke a barrier that had stood for decades: Fourier-analytic methods had been stuck below dimension 2.5 in $\mathbb{R}^3$ for many years. Their use of polynomial partitioning, linear programming bounds, and new incidence geometry has demonstrated that algebraic methods can succeed where harmonic analysis alone could not, opening a new front of attack on the problem.
+The Wang--Zahl breakthrough broke a barrier that had stood for decades. Their multiscale geometric and incidence arguments establish the full dimension bound in $\mathbb{R}^3$, opening a new front of attack on the higher-dimensional problem.
 
-The full conjecture---that Kakeya sets in $\mathbb{R}^n$ have Hausdorff dimension $n$ for all $n$---remains open for $n \geq 3$. The gap between the best known lower bound ($2.5 + \varepsilon$) and the conjectured value (3) in $\mathbb{R}^3$ is still substantial, and closing it will likely require new ideas. In higher dimensions ($n \geq 4$), the situation is even less resolved. The Kakeya conjecture is also deeply connected to the restriction conjecture in harmonic analysis and to bounds on the wave equation, so progress on any of these problems would likely advance the others.
+The full conjecture---that Kakeya sets in $\mathbb{R}^n$ have Hausdorff dimension $n$ for all $n$---remains open in dimensions $n\geq4$. The three-dimensional proof does not automatically generalize, and the higher-dimensional problem is deeply connected to the restriction conjecture and to bounds for wave equations.
 
 \section{Impact}
 \begin{itemize}
@@ -159,7 +159,7 @@ Write a Python/SageMath script to explore a concept from this chapter. See the a
 1999 & Wolff formulates the finite field Kakeya conjecture \cite{wolff1999} \\
 2003 & Wolff improves the lower bound on Kakeya dimension in $\mathbb{R}^3$ \\
 2008 & Dvir proves the finite field Kakeya conjecture using the polynomial method \cite{dvir2009} \\
-2023--2025 & Wang and Zahl break the 2.5-dimension barrier in $\mathbb{R}^3$ \cite{wangzahl2024} \\
+2025 & Wang and Zahl prove the three-dimensional Kakeya dimension conjecture \cite{wangzahl2025} \\
 2026 & Hong Wang awarded the Fields Medal at ICM Philadelphia \\
 \bottomrule
 \end{tabularx}

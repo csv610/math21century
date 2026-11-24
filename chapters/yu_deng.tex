@@ -38,7 +38,7 @@ The Boltzmann equation was proposed in 1872, and the macroscopic fluid equations
 If this derivation can be made rigorous, it would justify using fluid equations to model everything from weather prediction to aircraft design. It would also resolve a philosophical puzzle: how can irreversible behavior emerge from reversible microscopic laws? The answer has implications for thermodynamics, information theory, and the arrow of time.
 
 \subsection{Simplified Version}
-The idea is simple to state but fiendishly hard to prove. Start with a gas of hard spheres---billiard balls bouncing off each other---and describe their joint distribution using Newton's laws. Zoom out far enough, and you should see the Boltzmann equation emerge, describing how the gas evolves statistically. Zoom out further, and the Boltzmann equation should itself converge to the fluid equations (Euler or Navier--Stokes). Each ``zoom out'' step had been proved in simplified settings, but Deng--Hani--Ma's result is the first to carry the full chain through for realistic hard-sphere interactions.
+The idea is simple to state but fiendishly hard to prove. Start with a gas of hard spheres---billiard balls bouncing off each other---and describe their joint distribution using Newton's laws. Zoom out to the kinetic scale, and one expects the Boltzmann equation to emerge. A further hydrodynamic limit connects Boltzmann to fluid equations, but that is a separate problem. Deng--Hani--Ma's result addresses the first step for dilute hard-sphere interactions and does not claim the full chain.
 
 \section{Mathematical Theory}
 
@@ -108,32 +108,32 @@ and bilinear estimates exploit this by controlling $Q(f, g)$ in norms adapted to
 \section{The Solution}
 
 \subsection{The Big Idea}
-Imagine watching a flowing river from far away: the water moves smoothly as a single unit. Zoom in close and you see billions of individual molecules bouncing off each other like tiny billiard balls. Hilbert's sixth problem (1900) asked: can you start with the rules governing those individual collisions and \emph{prove} that the smooth river equations must follow? For over a century this was one of the hardest open problems in mathematical physics. Yu Deng's 2024 breakthrough with Hani and Ma finally proved it for hard-sphere gases. The core insight is ``propagation of chaos'': after enough collisions, different molecules become statistically independent---each one forgets its individual history and follows the crowd. Once you can prove this independence rigorously, with explicit error bounds, the smooth fluid equations emerge automatically from the microscopic chaos.
+Imagine watching a flowing river from far away: the water moves smoothly as a single unit. Zoom in close and you see billions of individual molecules bouncing off each other like tiny billiard balls. Hilbert's sixth problem (1900) asks how macroscopic equations can be derived from microscopic mechanics. Yu Deng, Zaher Hani, and Xiao Ma's 2024 work establishes a long-time derivation of the Boltzmann equation for dilute hard-sphere gases. The core insight is ``propagation of chaos'': in the kinetic limit, correlations remain controlled for as long as the limiting Boltzmann solution remains regular. This is a major step toward the microscopic foundations of fluid mechanics, but it does not by itself derive Navier--Stokes.
 
 \subsection{What Was Stopping Progress}
 The Boltzmann equation (1872) and the fluid equations (Euler, Navier--Stokes) were known individually, and physicists had long assumed that the former should follow from the latter in the right limit. But proving this rigorously---starting from Newton's laws for hard spheres and arriving at the Boltzmann equation with quantitative error bounds---had never been achieved for realistic molecular interactions. Previous progress was limited to simplified models: the Lorentz gas (particles bouncing off fixed obstacles rather than each other), linearized Boltzmann, or simplified kinetic models. The full chain from hard-sphere dynamics to Boltzmann resisted all attempts because controlling correlations between molecules over many collisions requires estimates far beyond what classical $L^2$ energy methods could provide.
 
 \subsection{The Breakthrough}
-Deng, Hani, and Ma introduced \emph{bilinear} energy estimates that exploit the product structure of the Boltzmann collision operator---instead of tracking each molecule independently (linear methods), they track pairs of molecules and how their correlations evolve. They combined this with the Dyson--Schwinger hierarchy, a technique borrowed from quantum field theory, to systematically expand the $N$-particle dynamics into a chain of equations for correlation functions. The key estimate shows that correlations decay exponentially in the number of collisions: after finitely many encounters, each molecule becomes statistically independent of the others. This quantitative propagation of chaos is the rigorous bridge from reversible Newtonian mechanics to irreversible fluid dynamics.
+Deng, Hani, and Ma propagate a long-time cumulant expansion that retains collision-history information instead of truncating at Lanford's short-time scale. A combinatorial cutting algorithm controls the associated collision-history diagrams and yields convergence in the kinetic limit. The result is a rigorous bridge from hard-sphere dynamics to the Boltzmann equation, not a general derivation of fluid equations.
 
 \subsection{How It Works}
 
-\subsection{Deng--Hani--Ma (2024--2025)}
+\subsection{Deng--Hani--Ma (2024)}
 
-\begin{theorem}[Deng--Hani--Ma, 2024--2025 \cite{denghani2024}]
+\begin{theorem}[Deng--Hani--Ma, 2024 \cite{denghani2024}]
 For hard-sphere gases with sufficiently smooth initial data, the empirical measure of the $N$-particle system converges, in the limit $N \to \infty$ with mean free path $\varepsilon \to 0$, to the solution of the Boltzmann equation with quantitative error bounds.
 \end{theorem}
 
 Their proof introduced several new technical innovations:
 
 \begin{enumerate}
-\item \textbf{Stability estimates for the Boltzmann equation}: New a priori bounds that control the solution in norms adapted to the statistical structure of the problem. These estimates are ``bilinear''---they exploit the product structure of the collision operator rather than working with linear energy methods.
-\item \textbf{Dyson--Schwinger hierarchies}: A systematic expansion of the $N$-particle dynamics in terms of interaction chains, allowing precise tracking of correlations between molecules. Originally developed in quantum field theory, this technique was adapted to the classical setting.
-\item \textbf{Quantitative propagation of chaos}: Showing that after a finite number of collisions, different molecules become statistically independent with explicit error bounds. The key estimate shows that correlations decay exponentially in the number of collisions.
+\item \textbf{Long-time cumulants}: The expansion retains the full collision history rather than using only a short-time series.
+\item \textbf{Collision-history combinatorics}: A cutting algorithm controls the associated diagrams.
+\item \textbf{Propagation of chaos}: The estimates control correlations and yield convergence on every interval where the limiting Boltzmann solution is regular.
 \end{enumerate}
 
 \begin{highlightbox}
-The result also implies irreversibility: even though microscopic Newtonian mechanics is time-reversible, the macroscopic Boltzmann equation describes irreversible entropy growth. Deng's work provides the first rigorous bridge between these two seemingly contradictory pictures.
+The result supplies a rigorous kinetic-limit bridge between reversible hard-sphere dynamics and the effective Boltzmann description. Entropy production still requires the usual kinetic-limit and regularity hypotheses; this is not a general theorem about every fluid model.
 \end{highlightbox}
 
 \subsection{Wave Kinetic Equations}
@@ -146,9 +146,9 @@ The wave kinetic equation describing the long-time evolution of nonlinear disper
 
 \subsection{After the Proof}
 
-The derivation of the Boltzmann equation from hard-sphere dynamics is complete. Deng, Hani, and Ma proved in 2024--2025 that the empirical measure of an $N$-particle hard-sphere system converges to the Boltzmann equation with quantitative error bounds, resolving a special case of Hilbert's sixth problem. The wave kinetic equation derivation is also established.
+The long-time derivation of the Boltzmann equation from dilute hard-sphere dynamics is established under the hypotheses of the paper. It resolves an important kinetic-theory case related to Hilbert's sixth problem, but it does not derive Navier--Stokes and does not cover general molecular potentials.
 
-These results have transformed the mathematical foundations of kinetic theory. The quantitative propagation of chaos---showing that correlations between molecules decay exponentially in the number of collisions---provides the first rigorous justification for the molecular independence assumption that underlies all of statistical mechanics. The bilinear energy estimates and Dyson--Schwinger hierarchy techniques introduced by Deng and collaborators have become new tools in the study of many-particle systems.
+These results strengthen the foundations of kinetic theory by extending propagation-of-chaos control far beyond Lanford's short-time regime. The estimates are specific to hard spheres and the kinetic scaling used in the theorem; they should not be presented as a universal justification of molecular independence.
 
 The full Hilbert sixth problem---deriving the Navier--Stokes equations from Newtonian mechanics---remains wide open. The current result covers hard-sphere gases with smooth initial data, but realistic molecular interactions involve softer potentials (attractive forces, Lennard-Jones interactions) that require fundamentally different analytic techniques. Connecting the Boltzmann equation to Navier--Stokes (the hydrodynamic limit) in the right regime is another major open challenge. These remaining problems sit at the frontier of mathematical physics and would complete the rigorous foundations of fluid mechanics.
 

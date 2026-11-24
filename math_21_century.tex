@@ -21,8 +21,12 @@
 
 \usepackage{fancyhdr}
 \setlength{\headheight}{28pt}
+\makeatletter
+\renewcommand{\verbatim@font}{\ttfamily\small}
+\makeatother
 
 \geometry{margin=1in}
+\setlength{\emergencystretch}{3em}
 
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}

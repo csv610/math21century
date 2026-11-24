@@ -2,14 +2,14 @@
 \addcontentsline{toc}{chapter}{Appendix: Figure Generation Prompts}
 \markboth{Appendix: Figure Generation Prompts}{Appendix: Figure Generation Prompts}
 
-This appendix contains detailed prompts for generating the 28 figures planned for this book. Each prompt specifies the visual content, mathematical elements, labels, style, and placement within the corresponding chapter. Figures are generated as PDF files via Python/matplotlib and inserted into the \LaTeX{} source using \verb|\includegraphics|.
+This appendix contains prompts for the 28 optional figures planned for the book. Each prompt specifies the visual content, mathematical elements, labels, style, and placement within the corresponding chapter. The prompts do not imply that the figures have already been generated or included.
 
 \section*{Conventions}
 \begin{itemize}
 \item All figures use white background, clean academic style, minimal color.
 \item Color scheme: blue for ``known/reference'', red for ``key innovation'', green for ``results/conclusions''.
 \item Output directory: \texttt{figures/} at the repository root.
-\item Each figure is placed via \verb|\begin{figure}[htbp]| with \verb|\centering|, \verb|\includegraphics[width=0.8\textwidth]|, and a \verb|\caption|.
+\item If generated, each figure can be placed via a standard `figure` environment with a centered graphic and caption.
 \end{itemize}
 
 %% ========================================================================
@@ -269,7 +269,7 @@ Top panel: A genus-2 hyperbolic surface (a double torus) with a measured geodesi
 \textbf{Placement:} In ``How It Works''
 
 \begin{quote}
-Two-panel figure. Left panel: A high-distortion knot drawn as a tangled closed curve in $\mathbb{R}^3$. Mark two points: point $A$ and point $B$ are close along the knot (short path along the curve, shown in blue) but far apart in ambient space (straight-line distance, shown in red). Label: ``intrinsic distance $\ll$ extrinsic distance''. Right panel: The symplectic translation---show the knot as a Legendrian curve on a contact 3-manifold (boundary of a tubular neighborhood). Label the asymptotic Conley--Zehnder capacity $c_{CZ}^{\text{asymp}}$ growing without bound. White background, clean academic style.
+Two-panel figure. Left panel: A torus knot drawn on an embedded torus in $\mathbb{R}^3$, with intersection data highlighted and a schematic distortion ratio $d_\gamma(p,q)/\lVert p-q\rVert$. Right panel: a surface-intersection diagram showing how increasing geometric intersection number forces a lower bound on knot distortion. Label the bound $\delta(T_{p,q})\geq \frac1{160}\min(p,q)$. White background, clean academic style.
 \end{quote}
 
 %% ------------------------------------------------------------------

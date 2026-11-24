@@ -1,6 +1,6 @@
 # 21st Century Mathematics
 
-A comprehensive textbook covering landmark mathematical results proven in the 21st century.
+An expository survey of landmark mathematical results, methods, and open problems.
 
 ## Objectives
 
@@ -8,7 +8,7 @@ This book has three interrelated goals:
 
 1. **Demystify modern breakthroughs.** The research papers behind results like the Poincaré Conjecture, Fermat's Last Theorem, and the Kakeya conjecture are technically impenetrable to most readers. This book bridges the gap between research papers and textbooks, making the core ideas and proof strategies accessible to advanced undergraduates and beginning graduate students.
 
-2. **Teach the proof, not just the statement.** Every chapter presents a complete, rigorous proof with no hand-waving. The "Solution" section in each chapter walks through the argument step by step, explaining the intuition, the key insights, and the technical machinery that makes the proof work. Where gaps exist in the literature, they are identified and filled.
+2. **Explain the proof strategy.** The "Solution" section in each chapter presents the main ideas, reductions, and technical machinery at an expository level. The chapters are not substitutes for the original papers or complete research-level proofs.
 
 3. **Connect across fields.** The 30 chapters span number theory, algebra, geometry, analysis, combinatorics, and mathematical physics. The book makes explicit the unexpected bridges between them---the modular connection behind Fermat's Last Theorem, the topological methods that unlocked the Poincaré Conjecture, the Fourier analytic tools behind the Green-Tao theorem. Readers should finish with a sense of how modern mathematics is woven together.
 
@@ -56,9 +56,9 @@ Each chapter follows a consistent pedagogical format:
 | 10 | Geometric Langlands | 2024 | -- |
 | 11 | Green-Tao Theorem | 2004/2016 | -- |
 | 12 | Jacob-Tsimerman (Andree-Oort) | 2016 | -- |
-| 13 | John Pardon (Knot Distortion) | 2020 | -- |
+| 13 | John Pardon (Knot Distortion) | 2011 | -- |
 | 14 | Kadison-Singer Conjecture | 2013 | -- |
-| 15 | Kakeya Conjecture | -- | -- |
+| 15 | Kakeya Conjecture | 2025 (3D) | -- |
 | 16 | Kepler Conjecture | 2005 | -- |
 | 17 | Kervaire Invariant One | 2009 | -- |
 | 18 | Lawson Conjecture | 2012 | -- |
@@ -73,7 +73,7 @@ Each chapter follows a consistent pedagogical format:
 | 27 | Virtual Haken Conjecture | 2012 | -- |
 | 28 | Weak Goldbach Conjecture | 2013 | -- |
 | 29 | Willmore Conjecture | 2012 | -- |
-| 30 | Yu-Deng (Navier-Stokes Regularity) | 2024 | -- |
+| 30 | Yu Deng, Hani, and Ma (Boltzmann Limit) | 2024 | -- |
 
 \* Awarded for completed proof; result proven earlier.
 
@@ -89,8 +89,8 @@ Math21Century/
     bounded_gaps_primes.tex
     ... (28 more chapters)
     appendix_figures.tex        # Figure index/descriptions
-  figures/                      # Generated illustrations
-  figure_prompts.csv            # Image generation prompts (28 entries)
+    figures/                      # Optional generated illustrations (currently empty)
+    figure_prompts.csv            # Image-generation prompts (28 entries)
 ```
 
 ## Building
@@ -98,8 +98,6 @@ Math21Century/
 Compile with standard LaTeX:
 
 ```bash
-pdflatex math_21_century.tex
-bibtex math_21_century
 pdflatex math_21_century.tex
 pdflatex math_21_century.tex
 ```
@@ -110,7 +108,7 @@ Or use `latexmk` for automatic round management:
 latexmk -pdf math_21_century.tex
 ```
 
-The book compiles cleanly: **0 errors, 0 warnings, 0 overfull boxes**.
+The source compiles without fatal errors with the standard pdfLaTeX toolchain. Layout warnings should still be reviewed because long URLs, formulas, and table cells can produce overfull boxes.
 
 ## Dependencies
 
@@ -124,7 +122,7 @@ No external package managers or Python dependencies required.
 
 ## Citations
 
-All 135 bibliographic entries resolve to their in-text citations with zero missing references. Key sources include arXiv preprints and peer-reviewed journal articles from Annals of Mathematics, Inventiones Mathematicae, Journal of the AMS, and ICM proceedings.
+The bibliography is maintained as a manual `thebibliography` list in `bibliography_full.tex`. References should be checked against the primary papers before publication; unused background entries are retained for possible future expansion.
 
 ## License
 

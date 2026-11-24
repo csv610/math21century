@@ -1,196 +1,68 @@
 % Chapter 13: John Pardon — Geometry, Topology, and Knots
-\let\LocalMacro\relax
 
-\chapter{John Pardon: Geometry, Topology, and Knots}
+\chapter{John Pardon: Knot Distortion}
 
 \section{The Problem}
 
 \subsection{Informal}
 
-\textbf{Background.} A knot is a loop of string tangled in space so that it cannot be undone without cutting. The distortion of a knot measures how much the knot ``stretches'' distances: it compares how close two points are along the string versus how far apart they are when measured through the surrounding space.
-
-\textbf{Given.} You are given any knot---however complicated---tied in a loop of string and placed in three-dimensional space.
-
-\textbf{Goal.} Determine whether there is an upper limit on how badly a knot can be distorted, or whether knots can be arbitrarily badly tangled in the sense of distortion.
-
-\textbf{Constraints.} The knot must be a closed loop (no endpoints). The distortion is measured as the ratio of the longest distance along the string to the shortest distance through space, over all pairs of points on the knot. The bound must hold for all knots, with no exceptions.
-
-\textbf{Example.} An untangled circle (the unknot) has distortion exactly 1: every pair of points is equally close along the string and through space. A simple trefoil knot has distortion slightly above 1. The question is whether, for any large number $C$ you name, you can tie a knot with distortion greater than $C$.
+For a rectifiable embedding $\gamma:S^1\to\mathbb{R}^3$, compare intrinsic arclength along the curve with Euclidean distance in space. Its distortion is
+\[
+\delta(\gamma)=\sup_{p\ne q\in\gamma}\frac{d_\gamma(p,q)}{\lVert p-q\rVert}.
+\]
+For a knot type $K$, define $\delta(K)$ as the infimum of $\delta(\gamma)$ over all representatives of $K$.
 
 \subsection{Formal}
-The problem of knot distortion asks whether there exist knots that can be arbitrarily badly tangled---measured by the ratio of distances along the knot to distances in the surrounding space. This question had been open since the 1980s.
+
+Gromov asked whether every knot type has a representative with distortion bounded by a universal constant, and in particular whether the distortion of torus knots remains bounded as their parameters grow.
 
 \subsection{Historical Context}
-Pardon's career began extraordinarily early. As a 21-year-old undergraduate at Princeton, he solved a major open problem about how tangled a knot can be---a question that had resisted attack for over two decades.
 
-\subsection{What Was Known}
-The concept of knot distortion was introduced by Gromov in the 1980s. It was known that some knots have large distortion, but the question of whether distortion can be arbitrarily large was open for over two decades. Partial results were obtained for specific families of knots, but a general construction was elusive.
+John Pardon answered the torus-knot form of the question in work published in 2011. His argument gives a quantitative lower bound for knots lying on embedded surfaces; it does not use an asymptotic Conley--Zehnder capacity.
 
-\subsection{Why It Matters}
-Knot theory is fundamental to understanding DNA, molecular chemistry, and the topology of the universe. Distortion measures how tangled a knot really is, which matters for understanding how knots behave under deformation. Pardon's techniques in symplectic geometry have also been applied to string theory and the study of dynamical systems.
+\subsection{The Basic Example}
 
-\subsection{Simplified Version}
-For the unknot (the trivial knot, which can be untangled to a simple circle), the distortion is exactly 1---every pair of points is close both along the knot and in space. The question was whether nontrivial knots can have arbitrarily large distortion, or whether there is an upper limit depending on the knot type. Pardon proved there is no limit: for any $C > 0$, there exists a knot with distortion exceeding $C$.
+For a round circle, the maximum ratio is $\pi/2$, since intrinsic distance is half the circumference while the corresponding chord has length twice the radius. Thus the unknot has distortion at most $\pi/2$ (and this is the value for a round representative), not 1.
 
 \section{Mathematical Theory}
 
-\subsection{Prerequisites}
-This chapter assumes familiarity with:
-\begin{itemize}
-\item Basic topology (knots, embeddings, manifolds)
-\item Differential geometry (symplectic and contact structures)
-\item Linear algebra (eigenvalues, capacities)
-\end{itemize}
+\subsection{Curves on Embedded Surfaces}
 
-\subsection{Symplectic Geometry}
+Let $F\subset\mathbb{R}^3$ be a PL embedded closed surface of genus at least one. If $\beta$ is an essential simple loop on $F$, let $K_\beta$ denote the corresponding knot and let $I(F,\beta)$ be its minimum geometric intersection number with a loop on $F$ bounding a disk whose interior misses $F$.
 
-Symplectic geometry is the mathematical framework of classical mechanics. A symplectic manifold is a smooth even-dimensional manifold $M$ equipped with a closed non-degenerate 2-form $\omega$.
-
-\begin{definition}[Symplectic Manifold]
-A \emph{symplectic manifold} $(M^{2n}, \omega)$ is a $2n$-dimensional smooth manifold with a closed non-degenerate 2-form $\omega \in \Omega^2(M)$, meaning $\omega^n \neq 0$ everywhere and $d\omega = 0$.
-\end{definition}
-
-The prototypical example is $(\mathbb{R}^{2n}, \sum_{i=1}^{n} dx_i \wedge dp_i)$, the phase space of $n$ particles. Unlike Riemannian geometry, symplectic geometry is rigid: there are no local invariants, and the only invariant is the volume form $\omega^n$.
-
-\subsection{Contact Geometry}
-
-Contact geometry is the odd-dimensional counterpart of symplectic geometry, arising naturally as the boundary of symplectic manifolds.
-
-\begin{definition}[Contact Manifold]
-A \emph{contact manifold} $(M^{2n-1}, \xi)$ is a $(2n-1)$-dimensional manifold with a maximally non-integrable hyperplane field $\xi = \ker \alpha$, where $\alpha \wedge (d\alpha)^{n-1} \neq 0$.
-\end{definition}
-
-Every compact contact manifold embeds as the boundary of a symplectic manifold (its \emph{skeleton}). Contact geometry governs the behavior of Legendrian submanifolds (maximal submanifolds tangent to $\xi$), which are the geometric counterpart of knots in classical mechanics.
-
-\subsection{Symplectic Embedding Problems}
-
-A central question in symplectic geometry is: when can one symplectic manifold be embedded into another?
-
-\begin{definition}[Symplectic Embedding]
-A \emph{symplectic embedding} of $(M_1, \omega_1)$ into $(M_2, \omega_2)$ is a smooth embedding $\iota: M_1 \hookrightarrow M_2$ such that $\iota^* \omega_2 = \omega_1$.
-\end{definition}
-
-Unlike smooth embeddings (which are governed by dimension alone), symplectic embeddings are highly constrained. The key obstruction is the \emph{volume}: if $\text{vol}(M_1) > \text{vol}(M_2)$, no symplectic embedding exists. But there are finer obstructions beyond volume.
-
-\subsection{The Conley--Zehnder Capacity}
-
-The Conley--Zehnder capacity is one of the most important symplectic invariants, measuring the ``size'' of a symplectic manifold.
-
-\begin{definition}[Conley--Zehnder Capacity]
-For a convex body $K \subset \mathbb{R}^{2n}$, the \emph{Conley--Zehnder capacity} $c_{CZ}(K)$ is defined via the minimal action of a periodic Hamiltonian orbit on $\partial K$:
-\[
-c_{CZ}(K) = \pi \cdot \inf \{ r^2 : \text{the Reeb flow on } \partial(r \cdot K) \text{ has a periodic orbit of action } r^2 \}.
-\]
-\end{definition}
-
-The Conley--Zehnder capacity gives a lower bound on the volume of symplectic embeddings: if $K_1$ symplectically embeds into $K_2$, then $c_{CZ}(K_1) \le c_{CZ}(K_2)$. It is monotone under inclusion and normalized so that $c_{CZ}(B^{2n}(1)) = 1$ for the unit ball.
-
-\subsection{Hofer Geometry and the Asymptotic Capacity}
-
-Pardon's key contribution was to define an \emph{asymptotic} version of the Conley--Zehnder capacity for all compact contact manifolds, not just convex bodies:
-
-\begin{theorem}[Pardon's Asymptotic Capacity]
-For a compact contact manifold $(M^{2n-1}, \xi)$, define:
-\[
-c_{CZ}^{\text{asymp}}(M) = \lim_{k \to \infty} \frac{c_{CZ}(\Sigma^k M)}{k}
-\]
-where $\Sigma^k M$ denotes the $k$-th iterated Legendrian surgery. This limit exists and provides a universal contact invariant.
-\end{theorem}
-
-This invariant detects when two contact manifolds are not contactomorphic, providing new tools for studying Legendrian knots and symplectic embedding problems.
+The key point is that intersection number is topological, while distortion is metric. Pardon proves that sufficiently complicated intersection data forces every representative of the knot type to have large distortion.
 
 \section{The Solution}
 
-\subsection{The Big Idea}
-
-Suppose you want to know whether a tangled headphone cord can be \emph{arbitrarily} tangled---whether there is no upper limit on how far apart two neighboring points on the cord can be in space. Trying to measure this directly is like trying to prove a number is large by writing it down: you can get bigger and bigger, but you never know if you have reached the ceiling.
-
-Pardon's idea was to stop measuring the cord directly and instead measure its \emph{shadow} in a completely different branch of mathematics---symplectic geometry, the mathematics of classical mechanics. He found an invariant (the asymptotic Conley--Zehnder capacity) that acts as a kind of ``tangle meter'' rooted in the geometry of phase space. If the tangle meter can be made arbitrarily large, then the distortion must be unbounded too---because a bounded distortion would force a bounded tangle meter. The tangle meter lives in a world where powerful topological tools apply, turning a question about distances into a question about abstract shape.
-
-\subsection{What Was Stopping Progress}
-
-For over two decades, everyone attacked distortion as a \emph{metric} problem: construct a specific knot, measure its distortion, and try to push the number higher. This ran into two bottlenecks simultaneously. First, the \emph{construction bottleneck}: making a knot more tangled in one region tends to untangle it elsewhere, keeping the overall distortion bounded. Second, the \emph{measurement bottleneck}: proving distortion is large requires showing that \emph{no clever re-embedding} can bring all far-apart pairs back together---a statement about all possible embeddings, not just the one you drew. Metric tools alone could not overcome either obstacle.
-
-\subsection{The Breakthrough}
-
-Pardon translated the metric question into a \emph{topological} one by finding an invariant from symplectic geometry---the asymptotic Conley--Zehnder capacity---that shadows knot distortion. This invariant applies to all compact contact manifolds (not just convex bodies) via a limiting construction, and it is powerful precisely because topological invariants are immune to the embedding tricks that defeated metric approaches. By constructing knots whose shadow grows without bound, Pardon proved distortion itself is unbounded.
-
-\subsection{How It Works}
-
-Pardon's breakthrough was to realize that knot distortion could be detected by a new invariant from \emph{symplectic geometry}. The key idea:
-
-\begin{enumerate}
-\item \textbf{From knots to contact geometry:} A knot in $\mathbb{R}^3$ can be viewed as a Legendrian curve in a contact 3-manifold (the boundary of a tubular neighborhood of the knot, with its natural contact structure). The distortion of the knot is related to the ``size'' of the associated contact manifold.
-
-\item \textbf{The Conley--Zehnder capacity:} For \emph{convex} symplectic bodies---like ellipsoids or polyhedra---there is a classical invariant called the Conley--Zehnder capacity $c_{CZ}$. It measures how large a symplectic ball can be embedded into the body, and it provides obstructions to symplectic embeddings. But the Conley--Zehnder capacity had only been defined for convex bodies, not for general compact contact manifolds.
-
-\item \textbf{The asymptotic construction:} Pardon's key innovation was to define an \emph{asymptotic} version of the Conley--Zehnder capacity for arbitrary compact contact manifolds. The construction works by taking iterated ``stabilizations'' (a form of connected sum with standard pieces) and taking the normalized limit:
+\begin{theorem}[Pardon, 2011 \cite{pardon2011}]
+For a knot $K_\beta$ represented by an essential loop $\beta$ on an embedded surface $F$,
 \[
-c_{CZ}^{\text{asymp}}(M) = \lim_{k \to \infty} \frac{c_{CZ}(\Sigma^k M)}{k}
+\delta(K_\beta)\geq \frac{1}{160}I(F,\beta).
 \]
-The miracle is that this limit exists and is finite, giving a well-defined invariant for \emph{any} compact contact manifold---not just convex bodies. This was the first universal contact invariant of its kind.
-\end{enumerate}
-
-\begin{theorem}[Pardon, 2010 \cite{pardon2010}]
-There exist knots with arbitrarily large distortion. Specifically, for any $C > 0$, there exists a knot $K$ whose distortion exceeds $C$.
+In particular, for the $(p,q)$ torus knot,
+\[
+\delta(T_{p,q})\geq \frac{1}{160}\min(p,q).
+\]
 \end{theorem}
 
-The proof constructs a family of knots whose associated contact manifolds have asymptotic Conley--Zehnder capacity growing without bound, which forces the distortion to grow without bound as well.
+Taking $p=q\to\infty$ shows that knot distortion is unbounded across knot types. The proof converts intersections on the surface into pairs of points that must be far apart in the knot metric but close in the ambient geometry, and then controls how this obstruction survives under arbitrary re-embedding.
 
-\begin{highlightbox}
-The Conley--Zehnder capacity measures the ``size'' of a symplectic manifold---how large a ball can be symplectically embedded into it. Pardon's asymptotic version gave the first universal invariants for contact manifolds, turning a metric question about knots into a topological question about contact structures.
-\end{highlightbox}
+\subsection{What the Theorem Does Not Say}
 
-\subsection{The Broader Impact of the Technique}
-
-The asymptotic Conley--Zehnder capacity was not just a one-shot tool for the distortion problem. It opened up new territory:
-
-\begin{itemize}
-\item \textbf{Embedding problems:} The invariant provides new obstructions to symplectic embedding---deciding when one symplectic manifold can fit inside another. This is a central problem in symplectic geometry, and Pardon's invariant gave the first tools applicable to non-convex domains.
-\item \textbf{Contact classification:} For the first time, mathematicians had an invariant that could distinguish between contact structures on compact manifolds, beyond the convex case. This partially resolved aspects of Hilbert's sixteenth problem.
-\item \textbf{Connection to physics:} The techniques extend to string theory, where strings moving through contact spaces are modeled as Legendrian submanifolds, and the capacity provides rigidity results for holomorphic curves.
-\end{itemize}
-
-\begin{theorem}[Pardon, 2013 \cite{pardon2013}]
-An asymptotic version of the Conley--Zehnder capacity can be defined for all compact contact manifolds, providing new obstructions to symplectic embedding problems.
-\end{theorem}
-
-\subsection{String Theory Applications}
-
-In recent work (2023), Pardon applied his contact geometry techniques to problems arising from string theory, where strings are modeled as loops moving through contact spaces embedded in symplectic spaces:
-
-\begin{theorem}[Pardon, 2023 \cite{pardon2023}]
-New rigidity results for holomorphic curves in symplectic manifolds with contact-type boundaries, with applications to the existence of special Lagrangian submanifolds in Calabi--Yau manifolds.
-\end{theorem}
-
-\subsection{After the Proof}
-
-The knot distortion problem is fully settled: Pardon proved that distortion can be arbitrarily large, and the asymptotic Conley--Zehnder capacity is now a standard invariant in contact topology. No further cases or refinements of the original result are needed. The proof technique---translating a metric question into a topological one via symplectic invariants---was a one-shot innovation that resolved the question completely.
-
-The tools Pardon developed have found applications well beyond knot theory. The asymptotic Conley--Zehnder capacity provides new obstructions to symplectic embedding problems (deciding when one symplectic manifold can fit inside another), which is a central question in symplectic geometry. His methods have also been applied to string theory, where strings moving through contact spaces are modeled as Legendrian submanifolds, and the capacity provides rigidity results for holomorphic curves. The connection between contact geometry and physics has become a thriving area of research.
-
-Several related questions remain open. Finding optimal distortion bounds for specific knot types---how large the distortion must be for, say, a trefoil knot versus a figure-eight knot---is still largely unexplored. Higher-dimensional analogues of distortion, where one studies embeddings of higher-dimensional spheres, are only beginning to be understood. The interplay between Pardon's invariants and other measures of knot complexity, such as crossing number or bridge index, is another direction where much remains to be discovered.
+The theorem gives lower bounds for explicit families of knot types. It does not determine the optimal distortion of every individual knot, nor does it introduce a universal contact invariant. Questions about sharp constants and higher-dimensional analogues remain active.
 
 \section{Impact}
-\begin{itemize}
-\item \textbf{Knot theory}: Distortion is now understood to be an unbounded invariant, fundamentally changing how topologists measure knot complexity.
-\item \textbf{Symplectic topology}: Pardon's contact invariants are now standard tools for studying embedding problems.
-\item \textbf{Mathematical physics}: The string theory applications connect pure geometry to fundamental physics.
-\item \textbf{Precocity}: At 21, Pardon became one of the youngest mathematicians to solve a major open problem, demonstrating the depth achievable at the undergraduate level.
-\end{itemize}
+
+Pardon's result answered a question posed by Gromov and supplied a robust geometric method for proving lower bounds on knot distortion. It also illustrates a useful general strategy: topological intersection data can force metric complexity.
 
 \section{Exercises}
 
 \begin{exercise}[Basic]
-Define the distortion of a knot. Explain intuitively why a knot with high distortion must be ``tangled'' in a way that is not visible from the outside.
+Compute the distortion of a round circle using intrinsic arclength and Euclidean chord distance.
 \end{exercise}
 
 \begin{exercise}[Intermediate]
-What is a symplectic manifold? How does it differ from a Riemannian manifold? Give a physical example of a symplectic manifold.
-\end{exercise}
-
-\begin{exercise}[Challenge]
-Explain how the Conley--Zehnder capacity provides an obstruction to symplectic embedding. Why can't one embed a large ball into a small symplectic manifold?
+Explain why a lower bound growing with $\min(p,q)$ proves that distortion is unbounded over the family of torus knots.
 \end{exercise}
 
 \section{Timeline}
@@ -198,18 +70,12 @@ Explain how the Conley--Zehnder capacity provides an obstruction to symplectic e
 \begin{tabularx}{\linewidth}{lX}
 \toprule
 \textbf{Year} & \textbf{Event} \\ \midrule
-2010 & Pardon (age 21, undergraduate) solves the knot distortion problem \\
-2013 & Pardon defines asymptotic Conley--Zehnder capacity for contact manifolds \\
-2013 & Pardon partially resolves Hilbert's 16th problem via contact geometry \\
-2023 & Pardon publishes new results in symplectic geometry from string theory \\
-2026 & John Pardon awarded the Fields Medal at ICM Philadelphia \\
+1983 & Gromov poses the knot-distortion question \\
+2010 & Pardon posts the preprint on distortion of knots on embedded surfaces \\
+2011 & The result appears in the \emph{Annals of Mathematics} \\
 \bottomrule
 \end{tabularx}
 
 \section{Citations}
 
-\begin{enumerate}
-\item Pardon, J. (2010). ``An asymptotic version of the Conley--Zehnder capacity.'' Transactions of the AMS, 361, 1749--1764.
-\item Pardon, J. (2013). ``Contact-invariant pseudoholomorphic curves.'' Journal of the AMS, 26, 879--899.
-\item Pardon, J. (2023). ``Holomorphic curves in symplectic manifolds with contact-type boundaries.'' arXiv:2308.02948.
-\end{enumerate}
+The primary reference is Pardon’s paper listed as \cite{pardon2011} in the bibliography.
