@@ -54,7 +54,7 @@ This construction shows $f(n) \leq O(n/\sqrt{\log n})$. The lower bound was the 
 \subsection{Previous Bounds}
 
 \begin{itemize}
-\item Erd\H{o}s (1946): $f(n) \geq cn/\sqrt{\log n}$ (using the grid construction and counting) \cite{erdos1946}
+\item Erd\H{o}s (1946): the square-grid construction gives $f(n) \leq Cn/\sqrt{\log n}$, while his counting argument proves the matching-order lower bound $f(n) \geq cn/\sqrt{\log n}$ \cite{erdos1946}
 \item Chung (1984): $f(n) \geq cn^{2/5}$ \cite{chung1984}
 \item Clarkson, Edelsbrunner, Guibas, Stolfi, and Welzl (1990): $f(n) \geq cn^{2/3}/\log n$ \cite{clarkson1990}
 \item Solymosi and T\'oth (2003): $f(n) \geq cn^{2/3}/(\log n)^{c}$ \cite{solymosi2003}
@@ -64,7 +64,7 @@ Progress was incremental and frustratingly slow.
 
 \subsection{The Polynomial Method}
 
-The key new idea came from Dvir's proof of the Kakeya conjecture over finite fields (2008), which used polynomials to count geometric configurations \cite{dvir2009}. The insight: if you have many points with few distances, you can construct a nonzero polynomial that vanishes at all the points, and then use algebraic properties to derive a contradiction.
+The proof uses incidence geometry and polynomial methods, but not by constructing a polynomial vanishing on the original point set. Guth and Katz recast equal-distance quadruples as incidences among curves in the three-dimensional space of planar rigid motions, then use polynomial partitioning and algebraic control of the resulting curves and surfaces \cite{guth2015}.
 
 \begin{definition}[Polynomial Method]
 Given a set of points $P \subset \mathbb{R}^2$, find a nonzero polynomial $p(x,y)$ of minimum degree that vanishes at all points in $P$. The degree of $p$ constrains the geometry of $P$.
@@ -73,29 +73,29 @@ Given a set of points $P \subset \mathbb{R}^2$, find a nonzero polynomial $p(x,y
 \section{The Solution}
 
 \subsection{The Big Idea}
-If there are far fewer than $n/\log n$ distinct distances, then some distance $d$ appears many times---many pairs of points are the same distance apart. That means many points lie on many circles of radius $d$. Guth and Katz's breakthrough was to use \textbf{polynomial partitioning}: find a degree-$d$ polynomial $p(x,y)$ whose zero set divides $\mathbb{R}^2$ into $O(d^2)$ cells, each containing at most $n/d^2$ points. The polynomial structure constrains how distances can repeat: if many circles of radius $d$ pass through a cell, the polynomial's degree forces those circles to intersect the zero set in controlled ways. The key technical tool is the \textbf{joints argument}: a \emph{joint} is a point where two circles and the polynomial curve all meet. Since the polynomial has degree $d$, each circle intersects it in at most $d$ points, so the total number of joints is at most $O(d^2)$ per curve. If there were too many repeated distances, there would be too many circles, hence too many joints---contradicting the degree bound. This transforms a geometric problem (counting distances) into an algebraic one (counting intersections of circles with a polynomial), and the algebraic structure gives counting power that pure combinatorics never could, breaking the $n^{2/3}$ barrier that had stood for 64 years.
+The main difficulty is to count quadruples of points that determine the same distance. Guth and Katz use the Elekes--Sharir framework: pairs of point-pairs at equal distance are encoded by incidences among curves in the three-dimensional space of planar rigid motions. Polynomial partitioning controls these incidences, while algebraic arguments handle curves concentrated on low-degree surfaces. This gives a near-linear lower bound for the number of distinct distances.
 
 \subsection{What Was Stopping Progress}
-For 64 years, all approaches relied on *combinatorial incidence counting*: double-counting arguments, the Szemer\'edi--Trotter theorem, graph-theoretic bounds. These methods could not escape a fundamental bottleneck---they always produced a lower bound with exponent strictly less than 1 because they could not simultaneously control points, lines, and distances without losing a polynomial factor. The $n^{2/3}$ barrier seemed impenetrable. Every technique hit the same wall: pure combinatorics was simply not powerful enough.
+Earlier approaches relied on combinatorial incidence counting and obtained lower bounds with exponent below 1. The breakthrough combined incidence geometry with algebraic tools in a new three-dimensional formulation of the distance-counting problem.
 
 \subsection{The Breakthrough}
-The key idea came from a completely different field. In 2008, Zeev Dvir proved the finite-field Kakeya conjecture using *polynomials*: construct a nonzero polynomial of controlled degree that vanishes on the set, then use the Schwartz--Zippel lemma to derive a contradiction. Guth and Katz realized this algebraic technique could be adapted to the real plane via *polynomial partitioning*: divide $\mathbb{R}^2$ into cells using a polynomial's zero set, control the points in each cell, and use a *joints argument* to count intersections. This transforms a geometric problem into an algebraic one---and escapes the $n^{2/3}$ barrier.
+Guth and Katz used polynomial partitioning as part of their incidence argument, but their proof is not a direct adaptation of Dvir's finite-field Kakeya proof and does not reduce to a joints count. The key setup is the Elekes--Sharir encoding of equal distances as incidences in the group of planar rigid motions.
 
 \subsection{How It Works}
 
-Erd\H{o}s proved in 1946 that $n$ points in the plane determine at least $cn/\sqrt{\log n}$ distinct distances, and his square grid construction showed that this was essentially tight---so the answer should be $\Theta(n/\sqrt{\log n})$. But after that promising start, progress stalled for decades. The best lower bound achieved by 2003 (Solymosi--T\'oth) was only $cn^{2/3}/(\log n)^c$ \cite{solymosi2003}. The exponent $2/3$ was nowhere near the $1$ needed to match the upper bound. The gap between what was known ($n^{2/3}$) and what was conjectured ($n/\sqrt{\log n}$) was enormous, and it had persisted in some form since the 1980s.
+Erd\H{o}s proved in 1946 that any $n$ points determine at least $cn/\sqrt{\log n}$ distinct distances; a square grid gives an upper bound of order $n/\sqrt{\log n}$. Later lower bounds improved the exponent, but remained below 1 until Guth and Katz proved the lower bound $cn/\log n$.
 
-All prior approaches relied on \emph{combinatorial incidence counting}: lines, circles, and distances were studied through double-counting arguments, the Szemer\'edi--Trotter theorem, and graph-theoretic bounds. These methods could not escape a fundamental bottleneck. When you try to count how many points lie on how many lines, the best tools give you bounds of the form $n^{2/3}$ (from incidence geometry) or $n/\sqrt{\log n}$ (from the grid construction). The combinatorial methods always produced a lower bound with exponent strictly less than 1 because they could not simultaneously control all three variables---points, lines, and distances---without losing a polynomial factor. Every known technique hit the same wall: the $n^{2/3}$ barrier seemed impenetrable.
+The problem had resisted methods that counted repeated distances directly. Guth and Katz made progress by encoding equal-distance quadruples as incidences among curves in the rigid-motion group, where polynomial partitioning and algebraic structure could control the count.
 
-The breakthrough came from a completely different field. In 2008, Zeev Dvir proved the finite-field Kakeya conjecture using \emph{polynomials}: he showed that if a set contains a line in every direction over a finite field, it must be large, by constructing a nonzero polynomial of controlled degree that vanishes on the set and then using the Schwartz--Zippel lemma \cite{dvir2009}.
+Dvir's polynomial proof of the finite-field Kakeya conjecture was an important development in polynomial methods, but it was not the key step in Guth and Katz's distinct-distances proof. Their argument uses the Elekes--Sharir encoding and incidence estimates in the rigid-motion parameter space.
 
-Guth and Katz realized that this algebraic technique could be adapted to the real plane. The key innovation was \textbf{polynomial partitioning}: given $n$ points, find a nonzero polynomial $p(x,y)$ of degree $d$ such that the zero set of $p$ divides $\mathbb{R}^2$ into $O(d^2)$ cells, each containing at most $n/d^2$ points. This transforms a geometric problem into an algebraic one. Inside each cell, the points are well-separated, and across cells, the polynomial structure constrains how distances can repeat.
+The key innovation was the combination of the Elekes--Sharir framework and polynomial partitioning. The partition is applied in the three-dimensional parameter space for rigid motions, and the proof separately controls incidences on the partition surface using algebraic geometry.
 
-The second key idea was a \emph{joints argument}: if many lines meet in a point, that point is a ``joint'' where three non-coplanar lines intersect. Guth and Katz showed that a polynomial of degree $d$ can have at most $O(d^2)$ joints per line, giving a new incidence bound that escaped the $n^{2/3}$ barrier.
+The incidence estimate is not the standard joints theorem. It depends on controlling rich families of curves and their concentration on low-degree algebraic surfaces in the rigid-motion parameter space.
 
-Here is how to think about the key insight. Imagine you have $n$ points scattered in the plane and very few distinct distances. That means many pairs of points are the same distance apart, so many pairs ``agree'' on a distance. Guth and Katz's idea is to build a polynomial surface (like a wavy sheet) that slices through the plane and puts roughly equal numbers of points in each piece. Because the polynomial has algebraic structure, it controls how the points can be arranged: you cannot pack too many points into a small region without the polynomial's degree forcing a contradiction. The polynomial acts like a ``net'' that catches any configuration with too few distances.
+The underlying strategy is to assume there are too few distances, which forces many equal-distance quadruples. The rigid-motion reformulation turns those quadruples into many curve incidences. Polynomial partitioning divides the parameter space into manageable cells, while algebraic structure controls the exceptional incidences on the partition surface.
 
-More concretely: if there were far fewer than $n/\log n$ distinct distances, then some distance $d$ would appear many times. That means many points lie on many circles of radius $d$. The polynomial partitioning forces these circles to intersect the polynomial's zero set in controlled ways, and the joints argument counts those intersections. The algebraic structure of the polynomial---its degree, its factorization, its behavior at special points---gives you counting power that pure combinatorics never could.
+In particular, the proof does not count circles intersecting a partition curve or derive a bound from the number of such intersections. The relevant incidences are among curves representing point-pairs in the rigid-motion parameter space.
 
 The result is $f(n) \ge cn/\log n$, which almost matches the grid construction's upper bound of $O(n/\sqrt{\log n})$. The $\log n$ gap remains, but the polynomial method closed a gap that had been open for 64 years.
 
@@ -110,13 +110,13 @@ This was essentially optimal (matching Erd\H{o}s's grid construction up to the $
 Their proof combined several ideas:
 
 \begin{enumerate}
-\item \textbf{Polynomial partitioning}: Divide the plane into regions using a polynomial surface, then study how points and distances distribute across regions.
-\item \textbf{Incidence geometry}: Count how many times points lie on lines (or curves) using the Szemer\'edi--Trotter theorem.
-\item \textbf{Joints argument}: Count the number of ``joints'' (points where three non-coplanar lines meet) to control the geometry.
+\item \textbf{Elekes--Sharir framework}: Encode equal distances as incidences in the group of planar rigid motions.
+\item \textbf{Polynomial partitioning}: Partition the three-dimensional parameter space and estimate incidences inside cells and on the partition surface.
+\item \textbf{Algebraic geometry}: Control exceptional curve configurations concentrated on low-degree surfaces.
 \end{enumerate}
 
 \begin{highlightbox}
-The Guth--Katz proof was a masterpiece of combining techniques from different areas. The polynomial method, originally from finite fields, was adapted to the real plane using a novel partitioning argument.
+The Guth--Katz proof combined a rigid-motion reformulation, polynomial partitioning, and incidence geometry to obtain the sharp exponent for this problem.
 \end{highlightbox}
 
 \subsection{Subsequent Developments}

@@ -66,7 +66,7 @@ The Clifford torus in $S^3$ is
 \[
 T_{\text{Cl}} = \left\{ (z_1, z_2) \in \mathbb{C}^2 : |z_1| = |z_2| = \frac{1}{\sqrt{2}} \right\}.
 \]
-It is minimal in $S^3$, has constant mean curvature in $\mathbb{R}^3$ (after stereographic projection), and $\mathcal{W}(T_{\text{Cl}}) = 2\pi^2$.
+It is minimal in $S^3$. Its stereographic projection is a torus in $\mathbb{R}^3$ with Willmore energy $2\pi^2$; stereographic projection need not preserve constant mean curvature.
 
 \section{The Solution}
 
@@ -74,7 +74,7 @@ It is minimal in $S^3$, has constant mean curvature in $\mathbb{R}^3$ (after ste
 
 Imagine you want to prove that no donut shape can be smoother (lower Willmore energy) than the perfectly symmetric Clifford torus. The obvious approach---minimize the energy directly---fails because the space of all donut shapes is infinite-dimensional and wildly complicated. You cannot just ``optimize'' over all tori.
 
-So Marques and Neves used an indirect strategy. Instead of searching for a minimum, they asked: \emph{can you sweep out the entire 3-sphere with a family of tori without any torus in the family having energy below $2\pi^2$?} If every sweepout must contain a torus with energy $\ge 2\pi^2$, then every individual torus has energy $\ge 2\pi^2$. Think of it like proving every highway has a speed bump: you do not need to check every mile of every road---you just need to show that any continuous route from point A to point B must cross a bump. Min-max theory makes this rigorous by studying the \emph{best possible} sweepout and showing its worst moment is always at least $2\pi^2$.
+Marques and Neves associate a canonical family of surfaces in $S^3$ to each immersed torus. The family is built from conformal transformations of the torus, and its maximal area is bounded above by the torus's Willmore energy. They then prove that this family must contain a surface of area at least $2\pi^2$. Thus the lower bound for the family gives the desired lower bound for the original torus. The min-max argument supplies this area threshold; it does not infer a bound for every torus merely from one high-energy surface in an unrelated sweepout.
 
 \subsection{What Was Stopping Progress}
 
@@ -82,47 +82,26 @@ Previous approaches tried to minimize the Willmore energy directly, but the spac
 
 \subsection{The Breakthrough}
 
-Marques and Neves adapted \textbf{Almgren--Pitts min-max theory}---originally developed for minimal surfaces---to the Willmore functional. Instead of minimizing, they studied \emph{sweepouts}: continuous families of tori filling $S^3$. The min-max value is the lowest ``spike'' any sweepout must contain. They showed this value is exactly $2\pi^2$ by proving that any torus with energy below $2\pi^2$ must have very simple structure (low index), and the only such torus is the Clifford torus itself.
+Marques and Neves used Almgren--Pitts min-max theory for the area functional in $S^3$, together with the canonical family associated to a torus. A positive-genus min-max argument gives the area threshold $2\pi^2$; comparing this threshold with the maximal area in the canonical family yields the Willmore inequality.
 
 \subsection{How It Works}
 
-The breakthrough of Marques and Neves (2014) \cite{marquesneves2014} was the application of \textbf{Almgren--Pitts min-max theory} to the Willmore functional.
+The breakthrough of Marques and Neves (2014) \cite{marquesneves2014} was to apply \textbf{Almgren--Pitts min-max theory} for area in $S^3$ to a canonical family associated with each torus, turning a min-max area lower bound into a Willmore-energy bound.
 
 The key ideas are:
 
 \begin{enumerate}
-\item \textbf{Min-max theory.} Instead of minimizing the Willmore energy directly, you study \emph{sweepouts}---continuous families of tori that fill up a 3-manifold (like $S^3$). For each sweepout, look at the \emph{maximum} Willmore energy among all tori in the family. The min-max value is the infimum of this maximum over all sweepouts. By a compactness argument (using geometric measure theory), this infimum is achieved by a ``min-max torus''---a critical point of the Willmore functional.
+\item \textbf{Min-max lower bound.} The width of the positive-genus min-max class is at least $2\pi^2$. The classification of low-index minimal surfaces in $S^3$ is a key ingredient in proving this estimate.
 
-\item \textbf{The canonical family.} For any immersed torus $\Sigma$, Marques and Neves construct a \emph{canonical family} of tori in $S^3$ by applying conformal transformations to $\Sigma$. The maximum Willmore energy in this family gives a lower bound on $\mathcal{W}(\Sigma)$. The key is that this family is ``optimal''---no other sweepout can give a better bound.
+\item \textbf{Canonical family comparison.} For an immersed torus $\Sigma$, the canonical family consists of surfaces in $S^3$ obtained from conformal images of $\Sigma$. Its maximal area is bounded above by $\mathcal{W}(\Sigma)$, and the min-max lower bound forces that maximum to be at least $2\pi^2$.
 
-\item \textbf{The index bound.} The index and classification argument rules out a min--max surface with energy strictly below $2\pi^2$; the Clifford torus realizes the limiting value $2\pi^2$. This forces the min--max value to be at least $2\pi^2$.
-
-\item \textbf{Free boundary extension.} To handle tori with boundary (which arise in the min-max construction), Marques and Neves use free boundary min-max theory, extending the Almgren--Pitts framework to manifolds with boundary.
 \end{enumerate}
 
-The novelty was not just using min-max theory (which had been applied to minimal surfaces since the 1980s) but adapting it to the Willmore functional, which has very different analytic properties. The Willmore functional is fourth-order (involving second derivatives of the embedding), while the area functional is second-order. This required new compactness and regularity theory.
+The proof does not directly run min-max on the fourth-order Willmore functional. It uses the area min-max theory for minimal surfaces in $S^3$, together with the conformal invariance of Willmore energy and the canonical-family construction.
 
 \begin{theorem}[Marques-Neves \cite{marquesneves2014}]
 The Willmore conjecture is true: $\mathcal{W}(T^2) \ge 2\pi^2$ for any immersed torus $T^2 \subset \mathbb{R}^3$, with equality only for the Clifford torus (up to conformal transformations).
 \end{theorem}
-
-\begin{highlightbox}
-The proof is a tour de force of geometric measure theory: it combines Almgren-Pitts min-max, conformal geometry, and the classification of minimal surfaces in $S^3$ to solve a 47-year-old problem.
-\end{highlightbox}
-
-\subsection{Marques and Neves \cite{marquesneves2014}}
-
-\begin{theorem}[Marques-Neves \cite{marquesneves2014}]
-The Willmore conjecture is true: $\mathcal{W}(T^2) \ge 2\pi^2$ for any immersed torus $T^2 \subset \mathbb{R}^3$, with equality only for the Clifford torus (up to conformal transformations).
-\end{theorem}
-
-Their proof used:
-\begin{enumerate}
-\item \textbf{Almgren-Pitts min-max theory}: Construct minimal surfaces in $S^3$ via sweepouts.
-\item \textbf{The canonical family}: For a given torus $\Sigma$, construct a family of surfaces in $S^3$ by conformal transformations, whose maximum area gives a lower bound on $\mathcal{W}(\Sigma)$.
-\item \textbf{The index bound}: Show that any minimal surface in $S^3$ with area $< 2\pi^2$ must be the Clifford torus.
-\item \textbf{The free boundary case}: Extend to surfaces with boundary using free boundary min-max.
-\end{enumerate}
 
 \begin{highlightbox}
 The proof is a tour de force of geometric measure theory: it combines Almgren-Pitts min-max, conformal geometry, and the classification of minimal surfaces in $S^3$ to solve a 47-year-old problem.
@@ -132,7 +111,7 @@ The proof is a tour de force of geometric measure theory: it combines Almgren-Pi
 
 The Willmore conjecture is completely settled: Marques and Neves proved that every immersed torus in $\mathbb{R}^3$ has Willmore energy at least $2\pi^2$, with equality only for the Clifford torus. The proof is complete and no further cases or refinements of the original conjecture are needed.
 
-The min-max methods that proved the conjecture have been applied to other variational problems in geometry. Almgren--Pitts theory, originally developed for minimal surfaces, was adapted to the Willmore functional (a fourth-order functional), and this adaptation has opened the door to studying higher-order variational problems using similar techniques. The connection between Willmore energy, conformal geometry, and integrable systems continues to yield new insights.
+The proof also strengthened the role of min-max methods in geometric analysis. In this argument, the area min-max theory is combined with conformal geometry to address a problem about Willmore energy. The connection between Willmore energy, conformal geometry, and integrable systems continues to yield new insights.
 
 The natural open questions concern higher-genus surfaces. What is the minimum Willmore energy for an immersed surface of genus $g \ge 2$? This is known as the higher-genus Willmore problem, and even the case $g = 2$ is open. The Willmore energy of non-orientable surfaces (such as the real projective plane) is also not fully understood. Determining whether the min-max approach can be extended to these settings, or whether fundamentally new ideas are needed, is an active area of research in geometric analysis.
 

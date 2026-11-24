@@ -76,55 +76,49 @@ The Liouville function $\lambda(n) = (-1)^{\Omega(n)}$ (where $\Omega(n)$ counts
 \section{The Solution}
 
 \subsection{The Big Idea}
-Imagine shuffling a deck of cards forever---plus one, minus one, plus one, minus one, assigned to every counting number. Can you keep \emph{every} evenly-spaced sum (even numbers, multiples of 3, multiples of 7, \ldots) small for all time? Tao showed this is impossible by a beautiful indirect argument: if you \emph{could} keep all sums bounded, then zooming out and averaging the sequence over larger and larger blocks of primes would make the sequence more and more predictable---its ``information content'' would drop. It would be forced to look like a periodic pattern based on prime numbers (a Dirichlet character). But periodic patterns always have unbounded sums along their own period. You cannot hide from that. It is like proving that no matter how you shuffle a deck of cards, if you zoom out enough, patterns \emph{must} emerge, and those patterns inevitably blow up the discrepancy.
+Suppose a sequence of $+1$ and $-1$ had bounded sums along every homogeneous arithmetic progression. Tao's proof first reduces this general problem, by a Fourier-analytic argument, to a randomized completely multiplicative setting. An entropy-decrement argument and a logarithmically averaged form of Elliott's conjecture then rule out bounded discrepancy in that setting. This reduction is subtler than saying an arbitrary sequence becomes a periodic Dirichlet character.
 
 \subsection{What Was Stopping Progress}
 The problem was open for 58 years because the tools of combinatorics---Beck--Fiala, Spencer's ``six standard deviations,'' Banaszczyk's bounds---work for \emph{set systems} with bounded degree. The Erd\H{o}s problem has \emph{all arithmetic progressions} as its set system, which has unbounded degree. These methods were fundamentally the wrong shape for the problem. Fourier analysis could detect periodicity but could not handle non-periodic sequences. Purely combinatorial arguments lacked the leverage to force \emph{global} unboundedness from \emph{local} constraints. It was like trying to prove a rope is infinitely long by only examining small sections of it.
 
 \subsection{The Breakthrough}
-Tao's key idea was the \emph{entropy decrement argument}: an averaging technique that shows bounded discrepancy forces the sequence to become more and more predictable as you average over larger primes. Once the sequence is predictable enough, it must correlate with a Dirichlet character, and that character has unbounded discrepancy---a contradiction. The proof also required proving a logarithmically averaged version of Elliott's conjecture (a far-reaching generalization of Chowla's conjecture), which formalized the statement that correlation with a Dirichlet character propagates.
+Tao's proof combines a Fourier-analytic reduction to stochastic completely multiplicative functions with an \emph{entropy decrement argument}. The entropy argument identifies scales at which multiplicative correlations can be controlled; a logarithmically averaged form of Elliott's conjecture then supplies the correlation estimates needed to rule out bounded discrepancy. It does not conclude that a deterministic sequence becomes a Dirichlet character.
 
 \subsection{How It Works}
 
-Before Tao, the Erd\H{o}s discrepancy conjecture had been open for 58 years with virtually no progress on the general case. Partial results existed for special sequences---for instance, it was known that periodic completely multiplicative sequences have unbounded discrepancy, and that certain structured sequences (those correlated with Dirichlet characters) cannot maintain low discrepancy. But these special cases shed no light on the core difficulty: proving that \emph{every} completely multiplicative $\pm 1$ sequence, no matter how cleverly constructed, must eventually exhibit large partial sums along some arithmetic progression.
+Before Tao, the Erd\H{o}s discrepancy conjecture had been open for 58 years. Partial results addressed special classes of sequences, but the core difficulty was proving that \emph{every} $\pm 1$ sequence, with no multiplicativity assumption, must eventually exhibit large partial sums along some arithmetic progression.
 
 Classical tools in combinatorics---the Beck--Fiala theorem, Spencer's ``six standard deviations suffice'' result, and Banaszczyk's bounds---address discrepancy for \emph{set systems} (bounded-degree hypergraphs) and produce bounds of the form $O(\sqrt{n})$ or $O(\sqrt{\log n})$. These methods are fundamentally ill-suited to the Erd\H{o}s problem because the ``set system'' here consists of \emph{all} arithmetic progressions, which have unbounded degree. Fourier analysis on the integers, while useful for detecting periodicity, cannot directly handle non-periodic completely multiplicative sequences. Purely combinatorial arguments lacked the leverage to force global unboundedness from local constraints.
 
 Tao's 2015 proof introduced a new probabilistic--analytic technique:
 \begin{enumerate}
-\item \textbf{The entropy decrement argument:} This is a new averaging technique. If the discrepancy were bounded, one could average the sequence over large primes and show that the ``information content'' (entropy) of the sequence decreases. This forces the sequence to correlate with a Dirichlet character of bounded conductor.
-\item \textbf{Reduction to Elliott's conjecture:} Tao proved a logarithmically averaged version of Elliott's conjecture (a far-reaching generalization of Chowla's conjecture on correlations of multiplicative functions), which formalized the statement that correlation with a Dirichlet character propagates.
-\item \textbf{Forcing unbounded discrepancy:} Once correlation with a Dirichlet character is established, the discrepancy is forced to be unbounded because Dirichlet characters have unbounded partial sums along certain arithmetic progressions (by Dirichlet's theorem on primes in arithmetic progressions).
+\item \textbf{Fourier-analytic reduction:} The general problem is reduced to ruling out bounded discrepancy for a suitable stochastic completely multiplicative function.
+\item \textbf{Entropy decrement:} Averaging over scales gives control of the multiplicative correlations that could occur under the bounded-discrepancy assumption.
+\item \textbf{Logarithmically averaged Elliott theorem:} Tao proves the correlation estimate needed to contradict that assumption. This is not based on Dirichlet characters having unbounded ordinary partial sums; nonprincipal Dirichlet characters have bounded ordinary partial sums.
 \end{enumerate}
 
-Suppose you could assign $+1$ and $-1$ to every counting number in a way that keeps \emph{every} evenly-spaced sum small forever. Tao showed this is impossible by an indirect argument. First, he showed that such a carefully balanced sequence would have to ``look like'' a periodic pattern based on prime numbers (a Dirichlet character). But periodic patterns always have unbounded sums along their own period---you can't hide from that. The key new idea is the \emph{entropy decrement}: imagine zooming out and averaging the sequence over larger and larger blocks of primes. If the discrepancy were bounded, this averaging would make the sequence more and more predictable (its entropy would drop), forcing it to look like a Dirichlet character---and that leads to a contradiction.
+If every homogeneous-progression sum were bounded, Tao's Fourier-analytic reduction would produce a randomized completely multiplicative model with the same obstruction. The entropy-decrement argument and the logarithmically averaged Elliott theorem show that such a model cannot have bounded discrepancy. A claim that it simply becomes a Dirichlet character would not capture the proof.
 
 \bigskip
 
 Terence Tao announced a proof on September 18, 2015, using a combination of:
 
 \begin{enumerate}
-\item \textbf{Entropy decrement argument}: A new averaging technique showing that if discrepancy is bounded, the sequence must correlate with a Dirichlet character.
-\item \textbf{Elliott's conjecture}: A generalization of Chowla's conjecture on correlations of multiplicative functions, proved by Tao using entropy methods.
-\item \textbf{Fourier analysis and nilsequences}: Showing that bounded discrepancy forces correlation with a nilsequence, which then forces unbounded discrepancy via Gowers norms.
+\item \textbf{Fourier-analytic reduction}: Transfer the problem to stochastic completely multiplicative functions.
+\item \textbf{Entropy decrement}: Find scales where the needed multiplicative correlation estimates apply.
+\item \textbf{Logarithmically averaged Elliott theorem}: Rule out the correlations required by a bounded-discrepancy counterexample.
 \end{enumerate}
 
 \begin{theorem}[Tao \cite{tao2016discrepancy}]
 For any sequence $x_n \in \{-1, +1\}$, the discrepancy is infinite.
 \end{theorem}
 
-\begin{proof}[Sketch]
-Assume for contradiction that $D < \infty$. Then:
-\begin{enumerate}
-\item By the entropy decrement argument, $x$ correlates with a Dirichlet character $\chi$ of bounded conductor.
-\item By Elliott's conjecture (proved via entropy), this correlation forces $x$ to behave like $\chi$.
-\item But a completely multiplicative function of bounded discrepancy must be close to a Dirichlet character, and such characters have unbounded discrepancy along some arithmetic progression (by Dirichlet's theorem on primes in AP).
-\item Contradiction.
-\end{enumerate}
+\begin{proof}[Proof outline]
+Assume for contradiction that $D < \infty$. Tao first applies a Fourier-analytic reduction to obtain a stochastic completely multiplicative model that retains bounded discrepancy. The entropy decrement argument selects scales at which its correlations can be analyzed. A logarithmically averaged form of Elliott's conjecture, proved as part of the argument, contradicts the correlations forced by bounded discrepancy. This rules out the model and hence the original sequence.
 \end{proof}
 
 \begin{highlightbox}
-Tao's proof was remarkable because it combined probabilistic combinatorics (entropy), analytic number theory (Elliott's conjecture), and ergodic theory (nilsequences). The proof is non-constructive and does not give explicit bounds on how fast the discrepancy grows.
+Tao's proof was remarkable because it combined entropy methods, analytic number theory, and a Fourier-analytic reduction. The proof is non-constructive and does not give explicit bounds on how fast the discrepancy grows.
 \end{highlightbox}
 
 \subsection{Subsequent Developments}
