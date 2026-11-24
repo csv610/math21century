@@ -74,17 +74,17 @@ The \emph{Leech lattice} $\Lambda_{24}$ is the unique even unimodular lattice in
 
 In 2001, Henry Cohn and Abhinav Kumar showed that if a certain class of radial functions satisfied a pair of inequalities, then the $E_8$ and Leech lattice packings would be optimal. This approach, now called the \emph{Cohn--Kumar linear programming bound}, required constructing an auxiliary function $f: \mathbb{R}^n \to \mathbb{R}$ with specific properties \cite{cohn2003}.
 
-\begin{theorem}[Cohn--Kumar, 2001 \cite{cohn2003}]
-If there exists a radial function $f$ such that:
+\begin{theorem}[Linear-programming bound]
+If a sufficiently regular radial function $f$ satisfies:
 \begin{enumerate}
-\item $f(x) \leq 0$ for $\|x\| \geq 1$ (no closer packing)
-\item $\hat{f}(\xi) \leq 0$ for $0 < \|\xi\| \leq 1$ (Fourier condition)
-\item $f(0) = \hat{f}(0)$
+\item $f(x)\leq0$ for $\|x\|\geq1$,
+\item $\widehat f(\xi)\geq0$ for every $\xi$, and
+\item $\widehat f(0)>0$,
 \end{enumerate}
-then the lattice packing is optimal.
+then the density of any unit-ball packing is at most $\operatorname{vol}(B_n(1/2))f(0)/\widehat f(0)$. A sharp bound matching a candidate packing proves its optimality.
 \end{theorem}
 
-Cohn and Kumar (2001) constructed such functions for dimensions $n \leq 8$ and $n = 24$, but only for \emph{lattice} packings, not arbitrary packings.
+Cohn and Kumar developed the linear-programming framework and identified candidate sharp bounds. An exact auxiliary function satisfying the required hypotheses is needed to prove optimality among all packings.
 
 \section{The Solution}
 
@@ -106,7 +106,7 @@ The $E_8$ lattice (dimension 8) and the Leech lattice (dimension 24) had been co
 The Cohn--Kumar linear programming bound reduces the packing problem to constructing a radial function $f$ with $f(x) \leq 0$ for $\|x\| \geq 1$, $\hat{f}(\xi) \leq 0$ for $0 < \|\xi\| \leq 1$, and $f(0) = \hat{f}(0)$. Previous attempts used piecewise polynomial or numerically optimized functions, which could only verify the inequalities on a finite grid---leaving open the possibility that violations existed elsewhere. Moreover, extending these methods to prove optimality for \emph{arbitrary} (not just lattice) packings required a fundamentally different approach, because the Fourier-analytic framework for non-lattice packings is much less constrained.
 
 \subsection{What Was Novel}
-Viazovska's 2016 proof was revolutionary because she constructed the auxiliary function \emph{exactly} using \textbf{modular forms}. The theta series of the $E_8$ lattice is a modular form of weight 4 for $\Gamma_0(2)$, and Viazovska used this to build $f$ as an integral transform involving the Bessel function $J_4$ and a polynomial $P$ determined by modular form coefficients. The modular form identity guarantees the Fourier-analytic inequalities \emph{exactly} at all critical points simultaneously---no numerical approximation needed. The proof was only 20 pages and was completed in a single weekend.
+Viazovska's 2016 proof constructed an exact auxiliary function using modular forms and Fourier analysis. The theta series of $E_8$ is the weight-4 Eisenstein series for $SL_2(\mathbb Z)$; the auxiliary-function construction uses a more elaborate modular-form integral transform. The proof is not simply an automatic consequence of the theta series.
 
 \subsection{Student-Friendly Explanation}
 Imagine you want to prove that stacking oranges in the $E_8$ pattern (in an 8-dimensional room) is the absolute best way to pack them. Cohn and Kumar showed that this boils down to constructing a special ``test function'' that certifies optimality---like a mathematical witness. Previous attempts found approximate witnesses by computer search, but an approximation is not a proof. Viazovska's insight was that modular forms---functions with deep symmetry properties from number theory---can be used to write down the witness \emph{exactly}. The symmetry of modular forms automatically forces the test function to have the right shape everywhere, not just at finitely many checked points.
@@ -143,7 +143,7 @@ In April 2016, Viazovska, together with Henry Cohn, Abhinav Kumar, Stephen Mille
 \begin{theorem}[Cohn--Viazovska--Kumar--Miller--Radchenko, 2016 \cite{cohn2017}]
 The Leech lattice $\Lambda_{24}$ achieves the maximal packing density among all sphere packings in $\mathbb{R}^{24}$. The optimal density is:
 \begin{equation}
-\Delta_{24} = \frac{\pi^{12}}{12! \cdot 2^{12}} \approx 0.00193
+\Delta_{24} = \frac{\pi^{12}}{12!} \approx 0.00193
 \end{equation}
 \end{theorem}
 
@@ -155,9 +155,9 @@ Viazovska's proof of the dimension 8 case was completed in a single weekend. She
 
 \subsection{Why Only Dimensions 8 and 24?}
 
-The method relies crucially on the existence of even unimodular lattices, which only exist in dimensions divisible by 8. In those dimensions, the theta series of the lattice is a modular form, which provides the analytic structure needed to construct the auxiliary function.
+The exceptional constructions use modular forms related to even unimodular lattices, which exist in dimensions divisible by 8. This explains the special dimensions 8 and 24, but does not prove analogous arguments impossible elsewhere.
 
-For other dimensions, the problem remains open. However, the Cohn--Kumar method (2017) has been used to prove optimality for many additional dimensions (up to $n = 43$) using a variant of the approach, though not always with the same elegance as Viazovska's exact construction \cite{cohn2017b}.
+The unrestricted optimum remains unknown outside dimensions 1, 2, 3, 8, and 24. Lattice-optimality or numerical linear-programming bounds in other dimensions do not establish the unrestricted optimum.
 
 \subsection{After the Proof}
 
@@ -165,14 +165,14 @@ The optimal sphere packing problem is settled for dimensions 8 and 24. Viazovska
 
 The method opened a new chapter in discrete geometry by connecting modular forms---objects from number theory---to the geometry of sphere packings. This unexpected bridge has become a major research direction, with researchers exploring analogous connections in other areas of combinatorics and geometry. Viazovska received the Fields Medal in 2022 in part for this breakthrough.
 
-The problem of optimal sphere packing remains open in all other dimensions. For dimensions 1, 2, and 3, the answer is known (by classical results), so together with dimensions 8 and 24, five dimensions are settled. In dimensions 4 through 7 and all dimensions 9 and above (except those settled by numerical methods up to dimension 43), the optimal packing is unknown. Viazovska's method relies on even unimodular lattices, which exist only in dimensions divisible by 8, so proving optimality in other dimensions will require fundamentally new ideas.
+The optimal unrestricted sphere-packing density is known in dimensions 1, 2, 3, 8, and 24. It remains unknown in the other dimensions. Lattice-optimality and numerical bounds must be distinguished from a proof of the unrestricted optimum.
 
 \section{Impact}
 
 \begin{itemize}
 \item \textbf{Fields Medal (2022)}: Viazovska was awarded the Fields Medal at the ICM in St. Petersburg (held virtually due to the war in Ukraine), partly for this work \cite{fields2022}.
 \item \textbf{Modular forms in discrete geometry}: The connection between modular forms and sphere packing is now a major research area \cite{viazovska2017, cohn2017}.
-\item \textbf{Dimension 12 and beyond}: Cohn and Kumar (2017) used numerical optimization of the Cohn--Kumar bound to prove optimality in dimensions 12, 18, 19, 20, 21, 22, and 23 \cite{cohn2017b}.
+\item \textbf{Other dimensions}: Numerical linear-programming bounds and results about lattice packings do not settle unrestricted optimal packing.
 \item \textbf{Connection to codes}: The $E_8$ lattice is related to the extended Golay code in dimension 24, and the sphere packing results have applications to coding theory.
 \item \textbf{String theory}: The $E_8$ and Leech lattices appear in bosonic string theory and conformal field theory, connecting discrete geometry to physics.
 \end{itemize}
@@ -192,7 +192,7 @@ Explain why the Poisson summation formula is essential in the Cohn--Kumar method
 \end{exercise}
 
 \begin{exercise}
-The theta series of a lattice $\Lambda$ is $\Theta_\Lambda(q) = \sum_{x \in \Lambda} q^{\|x\|^2/2}$. Show that for $E_8$, this is a modular form of weight 4 for $\Gamma_0(2)$. Why is this connection crucial for Viazovska's proof? \cite{viazovska2017}
+The theta series of a lattice $\Lambda$ is $\Theta_\Lambda(q) = \sum_{x \in \Lambda} q^{\|x\|^2/2}$. Show that for $E_8$, this is a modular form of weight 4 for $SL_2(\mathbb Z)$. Explain why modular forms enter Viazovska's auxiliary-function construction. \cite{viazovska2017}
 \end{exercise}
 
 

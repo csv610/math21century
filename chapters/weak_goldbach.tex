@@ -30,13 +30,13 @@ n = p_1 + p_2 + p_3
 Goldbach's letter to Euler is one of the oldest unsolved problems in mathematics. The strong version remains open after 280 years. The weak version was solved in 2013, just 37 years after the first major breakthrough.
 
 \subsection{What Was Known}
-Vinogradov proved in 1937 that every sufficiently large odd number is the sum of three primes, but his proof did not give a specific cutoff. Ramar\'e showed in 1995 that every even number is the sum of at most six primes. Helfgott's 2013 proof completed the argument by extending Vinogradov's result all the way down to the smallest cases using a computer-assisted verification.
+Vinogradov proved in 1937 that every sufficiently large odd number is the sum of three primes, but his proof did not give a specific cutoff. Ramar\'e proved in 1995 that every even integer is a sum of at most six primes. Helfgott's 2013 proof completed the argument by extending Vinogradov's result all the way down to the smallest cases using a computer-assisted verification.
 
 \subsection{Why It Matters}
 Goldbach's conjecture is one of the oldest and simplest-to-state unsolved problems in all of mathematics. Proving it would reveal deep truths about how prime numbers are distributed and how they combine to form other numbers. The weak Goldbach conjecture was a crucial stepping stone toward the full conjecture, which remains open.
 
 \subsection{Simplified Version}
-In 1937, Vinogradov proved that every \emph{sufficiently large} odd number is the sum of three primes---but ``sufficiently large'' meant a number with thousands of digits. The gap was extending the result down to \emph{all} odd numbers greater than 5. Helfgott's 2013 proof closed this gap by combining Vinogradov's methods with extensive computer verification for small cases.
+In 1937, Vinogradov proved that every \emph{sufficiently large} odd number is the sum of three primes---but ``sufficiently large'' gave a large, non-explicit threshold. The gap was extending the result down to \emph{all} odd numbers greater than 5. Helfgott's 2013 proof closed this gap by combining Vinogradov's methods with explicit analytic estimates together with finite computational verification.
 
 \section{Mathematical Theory}
 
@@ -99,11 +99,11 @@ Helfgott's breakthrough was to make the constants in the circle-method estimates
 
 \subsection{How It Works}
 
-Vinogradov's 1937 theorem was a landmark: it proved that every \emph{sufficiently large} odd number is the sum of three primes. But ``sufficiently large'' is doing a lot of heavy lifting in that sentence. The proof, as originally formulated, only guaranteed the result for numbers with \emph{thousands of digits}. This left a gaping hole: how far down does the three-prime result actually hold?
+Vinogradov's 1937 theorem was a landmark: it proved that every \emph{sufficiently large} odd number is the sum of three primes. But ``sufficiently large'' is doing a lot of heavy lifting in that sentence. The proof, as originally formulated, gave a large, non-explicit threshold. This left a gaping hole: how far down does the three-prime result actually hold?
 
 For over 70 years, nobody could extend Vinogradov's result much below astronomical bounds. The gap was not one of principle but of technique---the methods existed, but the explicit constants needed to push the bound down were out of reach. In 1995, Olivier Ramar\'e made a partial breakthrough: he proved that every odd integer $n \geq 7$ is the sum of at most \emph{seven} primes \cite{ramare1995}. This was remarkable---it meant the conjecture was true if you relaxed the requirement from ``exactly three primes'' to ``at most seven.'' But ``at most seven'' is not ``exactly three,'' and closing that remaining gap from seven primes down to three proved to be an entirely different challenge.
 
-The core difficulty was this: Vinogradov's theorem and Ramar\'e's result together implied that every odd number $n \geq 7$ could be written as a sum of at most seven primes, and that sufficiently large odd numbers could be written as a sum of exactly three. But the ``sufficiently large'' threshold from Vinogradov's method was still far too large to verify by computer. Nobody knew how to make the analytic machinery work all the way down to checkable cases.
+The core difficulty was this: Vinogradov's theorem and Ramar\'e's result together implied that Ramaré's result gives a bounded-prime decomposition, while Vinogradov's theorem gives three-prime representations only above a large threshold. But the ``sufficiently large'' threshold from Vinogradov's method was still far too large to verify by computer. Nobody knew how to make the analytic machinery work all the way down to checkable cases.
 
 The circle method, at its heart, produces \emph{asymptotic formulas}: formulas that describe the number of representations $r(n)$ as a main term plus an error term. For the weak Goldbach conjecture, the main term comes from the \emph{major arcs} (intervals around rational numbers with small denominators), and the error term comes from the \emph{minor arcs} (everything else). The result holds whenever the main term is positive and the error term is smaller in absolute value.
 
@@ -128,7 +128,7 @@ Helfgott's breakthrough had three components, each of which was technically dema
 \]
 for specific, computable values of $B$ and $A$. This is qualitatively the same statement as Vinogradov's original estimate, but making the constants explicit is what transforms it from a qualitative theorem into a tool for computing numerical bounds.
 
-\item \textbf{Computer verification for small cases.} With explicit bounds from parts (1) and (2), Helfgott could compute that the circle method works---i.e., the main term dominates the error---for all odd $n \geq 10^{29}$. This left finitely many cases to check: every odd number from 7 up to $10^{29}$. But checking $10^{29}$ cases by brute force is hopeless. The key to making this feasible was Ramar\'e's result: since every odd number $\geq 7$ is a sum of at most 7 primes, one could reduce the problem to verifying the 3-prime statement for a much smaller range, and then use computational shortcuts (including sieving techniques and systematic enumeration) to verify every case.
+\item \textbf{Computer verification for small cases.} With explicit bounds from parts (1) and (2), Helfgott could compute that the circle method works---i.e., the main term dominates the error---for all odd $n \geq 10^{29}$. This left finitely many cases to check: the remaining finite range below the analytic threshold. But checking $10^{29}$ cases by brute force is hopeless. The key to making this feasible was Ramar\'e's result: since every odd number $\geq 7$ is a sum of at most 7 primes, one could reduce the problem to verifying the 3-prime statement for a much smaller range, and then use computational shortcuts (including sieving techniques and systematic enumeration) to verify every case.
 \end{enumerate}
 
 The novelty of the proof lay in the \emph{combination}: explicit analytic number theory---with real, computable constants rather than big-O estimates---joined to large-scale computer verification. Neither component alone would have sufficed. The analytic methods without explicit constants could not produce a checkable bound; the computer without the analytic reduction could not handle the astronomically many cases. Together, they closed the gap.
@@ -138,9 +138,9 @@ Here is the argument in plain terms. Imagine you have a formula that works for `
 Helfgott's strategy was:
 
 \begin{enumerate}
-\item \textbf{Compute the threshold exactly.} Using explicit versions of Vinogradov's estimates, Helfgott determined that the circle method provably works for all odd $n \geq 10^{29}$. This is a concrete, checkable statement: for every odd number above $10^{29}$, the main term in the circle method integral is positive and the error term is smaller, so a three-prime representation exists.
+\item \textbf{Compute the threshold exactly.} Using explicit versions of Vinogradov's estimates, Helfgott obtained an explicit analytic threshold (commonly stated at $10^{27}$) for the three-prime argument. This is a concrete, checkable statement: for every odd number above $10^{29}$, the main term in the circle method integral is positive and the error term is smaller, so a three-prime representation exists.
 
-\item \textbf{Reduce the remaining check.} For numbers below $10^{29}$, the analytic methods no longer guarantee the result. But Ramar\'e's theorem says every odd number $\geq 7$ is a sum of \emph{at most 7 primes}. So the question ``is it a sum of 3 primes?'' only needs to be checked for numbers where the 7-prime decomposition does not already collapse to 3 primes. This dramatically shrinks the set of cases that need attention.
+\item \textbf{Reduce the remaining check.} For numbers below $10^{29}$, the analytic methods no longer guarantee the result. But Ramar\'e's theorem says every odd number $\geq 7$ is a sum of \emph{at most 7 primes}. So the question ``is it a sum of 3 primes?'' only needs to be checked for numbers where the 7-prime decomposition does not already collapse to 3 primes. The finite verification uses dedicated computation and explicit bounds; it is not a brute-force check of $10^{29}$ cases reduced by Ramaré's theorem.
 
 \item \textbf{Verify by computer.} With the range reduced to a manageable size, and with algorithmic tools to enumerate prime decompositions efficiently, Helfgott verified the 3-prime statement for every odd integer in the remaining range. The computer checked over 100 million cases, and each check was fast because the reduced problem (from step 2) kept the search space small.
 \end{enumerate}
@@ -148,7 +148,7 @@ Helfgott's strategy was:
 The result: there is no odd number greater than 5 that escapes the three-prime decomposition. The conjecture is a theorem.
 
 \begin{highlightbox}
-The proof was verified independently by a team including David Plante and others using automated theorem proving tools, providing an additional layer of confidence in the computer-assisted portions of the argument.
+Helfgott combined explicit analytic estimates with finite computation; this chapter does not claim that the proof was separately formalized in an automated theorem prover.
 \end{highlightbox}
 
 \subsection{After the Proof}

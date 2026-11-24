@@ -82,16 +82,16 @@ If both were odd, $x^a - y^b$ would be even, but it equals 1. If both were even,
 \item \textbf{Lebesgue \cite{lebesgue1850}}: Proved $x^2 - y^n = 1$ has no solutions for $n \geq 3$.
 \item \textbf{Cassels \cite{cassels1960}}: Proved that if $x^a - y^b = 1$ with $a, b$ odd primes, then $a \mid y$ and $b \mid x$.
 \item \textbf{Ko Chao \cite{kochao1965}}: Proved the case $a = 2$.
-\item \textbf{Mihailescu \cite{mihailescu2004}}: Made the crucial breakthrough by proving that any solution must satisfy the double Wieferich condition.
+\item \textbf{Mihăilescu \cite{mihailescu2004}}: Proved Catalan's conjecture by analyzing primary cyclotomic units.
 \end{itemize}
 
 \subsection{Cyclotomic Fields and Units}
 
-The key algebraic number theory setup: if $x^a - y^b = 1$, then in the cyclotomic field $\mathbb{Q}(\zeta_a)$ we have the factorization:
+The key factorization uses $b$-th roots of unity: if $x^a-y^b=1$, then
 \begin{equation}
-x^a = y^b + 1 = \prod_{i=0}^{a-1} (y + \zeta_a^i)
+x^a = y^b+1 = \prod_{i=0}^{b-1}(y+\zeta_{2b}^{2i+1})
 \end{equation}
-The factors on the right are coprime in the ring of integers, so each must be an $a$-th power times a unit. This leads to studying the unit group of cyclotomic fields.
+These factors need not be pairwise coprime without additional hypotheses, and extracting perfect powers requires substantial ideal-class and unit arguments. The displayed factorization alone does not imply each factor is a power times a unit.
 
 \begin{definition}[Cyclotomic Units]
 The \emph{cyclotomic units} in $\mathbb{Q}(\zeta_p)$ are the units of the form $1 - \zeta_p^k$ and their products.
@@ -113,7 +113,7 @@ q^{p-1} &\equiv 1 \pmod{p^2}
 \end{align}
 \end{definition}
 
-The only known double Wieferich pairs are $(2, 1093)$, $(3, 1093)$, and their symmetric counterparts — none of which can be the exponents $(a, b)$ in a Catalan solution.
+Congruences of Wieferich type arise in some auxiliary arguments under additional hypotheses. They are not a classification of all exponent pairs and do not by themselves prove Catalan's theorem.
 
 \section{The Solution}
 
@@ -121,7 +121,7 @@ The only known double Wieferich pairs are $(2, 1093)$, $(3, 1093)$, and their sy
 
 Catalan's equation $x^a - y^b = 1$ asks: can two consecutive whole numbers both be perfect powers? The only example is $9 - 8 = 1$. The equation has four unknowns, but the real difficulty is the two \emph{exponents} $a$ and $b$. For 150 years, mathematicians could fix one exponent at a time---Euler solved $x^2 - y^3 = 1$, Lebesgue handled $x^2 - y^n = 1$, Tijdeman (1976) showed both exponents must be bounded---but nobody could constrain both simultaneously.
 
-Mihăilescu's insight was to work inside \textbf{cyclotomic fields}. Any solution $x^a - y^b = 1$ forces $x^a = y^b + 1$, so $x^a$ splits as a product of cyclotomic factors $\Phi_d(y)$ for $d \mid a$. The cyclotomic units $\Phi_d(y)$ live in a highly structured abelian group, and Mihăilescu showed that two independent cyclotomic units must simultaneously satisfy \emph{cyclicity conditions}---each must be a perfect power in its own group. For $p$ and $q$ primes, this forces each to be a \textbf{Wieferich prime} relative to the other: $q^{p-1} \equiv 1 \pmod{p^2}$ and $p^{q-1} \equiv 1 \pmod{q^2}$. This is the double Wieferich condition---an arithmetic relationship between the two exponents that is so restrictive only finitely many prime pairs satisfy it, and none of them arise from a Catalan solution.
+Mihăilescu's proof used deep properties of cyclotomic units and class groups to compare the prime-power factorizations forced by a hypothetical solution. The proof is not a deduction from a double-Wieferich condition; such congruences alone would not exclude all other solutions.
 
 \subsection{What Was Stopping Progress}
 
@@ -129,30 +129,24 @@ Over 150 years, mathematicians chipped away at special cases: Euler solved $x^2 
 
 \subsection{The Breakthrough}
 
-Mihăilescu showed that any solution must satisfy the \textbf{double Wieferich condition}: the exponents must form a rare pair of primes where each ``nearly'' divides a power of the other modulo its square. This condition is extraordinarily restrictive---only a handful of prime pairs satisfy it, and none of them can come from a Catalan solution. The proof works by factoring $y^b + 1$ in cyclotomic fields, using deep results about cyclotomic units and $p$-adic logarithms to extract this hidden constraint.
+Mihăilescu's proof analyzes a hypothetical solution after reducing to prime exponents and uses cyclotomic units, class groups, and related congruences to derive a contradiction. The congruence conditions are intermediate tools, not the theorem itself.
 
 \subsection{How It Works}
 
-Preda Mihăilescu's 2002 proof introduced a completely new idea: a hidden arithmetic constraint called the \textbf{double Wieferich condition} that dramatically limits what $(a, b)$ can be.
+Mihăilescu's proof reduces to prime exponents and uses relations among primary cyclotomic units, together with class-group arguments. Some auxiliary congruences are useful, but a double-Wieferich condition is neither the theorem nor a sufficient proof strategy.
 
-Recall that a prime $p$ is \emph{Wieferich} if $2^{p-1} \equiv 1 \pmod{p^2}$. Only two Wieferich primes are known: 1093 and 3511. A pair of primes $(p, q)$ is \emph{double Wieferich} if
-\[
-p^{q-1} \equiv 1 \pmod{q^2} \quad \text{and} \quad q^{p-1} \equiv 1 \pmod{p^2}.
-\]
-
-Mihăilescu proved:
+The main result is:
 
 \begin{theorem}[Mihăilescu]
-If $x^a - y^b = 1$ with $a, b > 1$, then $a$ and $b$ must form a double Wieferich pair (after reduction to prime exponents).
+For integers $x,y,a,b>1$, the only solution to $x^a-y^b=1$ is $(x,y,a,b)=(3,2,2,3)$.
 \end{theorem}
 
-This was the missing constraint. The double Wieferich condition is extraordinarily restrictive: among all pairs of primes, only a handful satisfy it, and none of them can arise from a Catalan solution. The proof of this condition uses:
+The proof uses several layers of algebraic number theory, including:
 
 \begin{enumerate}
 \item \textbf{Cassels' divisibility conditions}: If $a, b$ are odd primes and $x^a - y^b = 1$, then $a \mid y$ and $b \mid x$.
-\item \textbf{Cyclotomic field arithmetic}: Factor $y^b + 1 = \prod_{i=0}^{a-1}(y + \zeta_a^i)$ in $\mathbb{Q}(\zeta_a)$. The factors are coprime, so each is an $a$-th power times a unit.
-\item \textbf{Thaine's theorem on circular units}: A deep result in algebraic number theory that controls the structure of cyclotomic units, allowing Mihăilescu to extract the double Wieferich constraint from the unit equations.
-\item \textbf{$p$-adic analytic methods}: These tools bridge the gap between the algebraic constraints (in cyclotomic fields) and the arithmetic constraints (the double Wieferich condition).
+\item \textbf{Cyclotomic field arithmetic}: Analyze factorizations of $y^b+1$ in cyclotomic fields, with careful treatment of common ideals and units.
+\item \textbf{Cyclotomic unit and class-group arguments}: These establish the strong constraints needed for the final contradiction.
 \end{enumerate}
 
 The proof proceeds in five steps:
@@ -160,9 +154,9 @@ The proof proceeds in five steps:
 \begin{enumerate}
 \item \textbf{Reduction to prime exponents}: It suffices to consider $a$ and $b$ prime (if $a = rs$, then $x^a = (x^r)^s$).
 \item \textbf{The Cassels conditions}: If $a, b$ are odd primes and $x^a - y^b = 1$, then $a \mid y$ and $b \mid x$.
-\item \textbf{The double Wieferich condition}: Using the Cassels conditions and properties of cyclotomic units, Mihailescu showed that $a$ and $b$ must form a double Wieferich pair.
-\item \textbf{Thaine's theorem and $p$-adic logarithms}: He used a deep result of Thaine on circular units together with $p$-adic analytic methods to show that the only possible double Wieferich pairs for the exponents lead to the known solution.
-\item \textbf{Final contradiction}: For any hypothetical solution beyond $(3, 2, 2, 3)$, the arithmetic constraints force a contradiction via size estimates on the cyclotomic units.
+\item \textbf{Cyclotomic unit relations}: Analyze the units and ideal classes arising from the factorization.
+\item \textbf{Cyclotomic unit relations}: Use unit and class-group constraints to rule out hypothetical solutions; auxiliary congruences alone are not sufficient.
+\item \textbf{Final contradiction}: The cyclotomic constraints exclude every solution other than $9-8=1$.
 \end{enumerate}
 
 \begin{theorem}[Mihailescu \cite{mihailescu2004}]
@@ -170,7 +164,7 @@ The only solution to $x^a - y^b = 1$ in integers $x, y, a, b > 1$ is $(3, 2, 2, 
 \end{theorem}
 
 \begin{highlightbox}
-Mihăilescu's proof was remarkably short (about 20 pages in its final form) and used a beautiful synthesis of classical algebraic number theory (cyclotomic units, class field theory) with modern $p$-adic analytic methods. It showed that the Catalan equation is essentially a question about the arithmetic of cyclotomic fields---and that the double Wieferich condition is the hidden structure that makes it solvable.
+Mihăilescu's proof, published in 2004, used deep algebraic number theory, especially primary cyclotomic units. The proof should not be summarized as a consequence of a double-Wieferich condition.
 \end{highlightbox}
 
 \subsection{Mihailescu's Proof in Detail}
@@ -184,8 +178,8 @@ Mihailescu's proof combined several deep ideas:
 \begin{enumerate}
 \item \textbf{Reduction to prime exponents}: It suffices to consider $a$ and $b$ prime (if $a = rs$, then $x^a = (x^r)^s$).
 \item \textbf{The Cassels conditions}: If $a, b$ are odd primes and $x^a - y^b = 1$, then $a \mid y$ and $b \mid x$.
-\item \textbf{The double Wieferich condition}: Using the Cassels conditions and properties of cyclotomic units, Mihailescu showed that $a$ and $b$ must form a double Wieferich pair.
-\item \textbf{Thaine's theorem and $p$-adic logarithms}: He used a deep result of Thaine on circular units together with $p$-adic analytic methods to show that the only possible double Wieferich pairs for the exponents lead to the known solution.
+\item \textbf{Cyclotomic unit constraints}: Unit relations and class-group information constrain the prime exponents and ultimately exclude any new solution.
+\item \textbf{Final contradiction}: The resulting cyclotomic constraints rule out every hypothetical solution beyond $9-8=1$.
 \item \textbf{Final contradiction}: For any hypothetical solution beyond $(3, 2, 2, 3)$, the arithmetic constraints force a contradiction via size estimates on the cyclotomic units.
 \end{enumerate}
 
@@ -194,12 +188,12 @@ Mihailescu's proof combined several deep ideas:
 \begin{itemize}
 \item \textbf{Simplified proofs}: Several authors (Bilu, Hanrot, Voutier, etc.) have given alternative proofs or simplifications.
 \item \textbf{Generalizations}: The methods extend to equations of the form $x^a - y^b = c$ for small fixed $c$.
-\item \textbf{Computational verification}: The double Wieferich condition has been checked for all primes up to very large bounds.
+\item \textbf{Computational verification}: Finite searches can check small ranges but are not part of the proof of the theorem.
 \end{itemize}
 
 \subsection{After the Proof}
 
-Catalan's conjecture is completely settled: the only consecutive perfect powers are 8 and 9. Mihăilescu's proof leaves no remaining cases or open sub-problems within the original question. The double Wieferich condition has been computationally verified for all primes up to very large bounds, confirming that no other solutions exist.
+Catalan's conjecture is completely settled: the only consecutive perfect powers are 8 and 9. Mihăilescu's proof leaves no remaining cases in the original question; finite searches are not what establish the result.
 
 The proof advanced the theory of exponential Diophantine equations and showed how cyclotomic units and $p$-adic analytic methods can work together to control solutions. Several simplified proofs and alternative approaches have been given since 2002, making the result more accessible. The methods have been extended to related equations of the form $x^a - y^b = c$ for small fixed values of $c$, where partial results have been obtained but the full picture remains unclear.
 
@@ -216,7 +210,7 @@ Natural generalizations are still open. The equation $x^a - y^b = c$ for larger 
 
 \section{Computational Verification}
 
-Catalan's conjecture can be verified computationally by exhaustively searching for consecutive perfect powers and by checking the double Wieferich condition.
+Small ranges can be explored computationally by searching for consecutive perfect powers. Such a finite search illustrates the theorem but does not prove it; checking Wieferich pairs is unrelated to a complete verification.
 
 \subsection{Searching for Consecutive Perfect Powers}
 
@@ -291,7 +285,7 @@ print("(None found among small primes)")
 \end{verbatim}
 
 \begin{highlightbox}
-Students should run these scripts to observe: (1)~8 and 9 are the only consecutive perfect powers up to 10000, (2)~Wieferich primes are extremely rare, and (3)~no double Wieferich pairs exist among small primes, confirming the computational evidence for Catalan's conjecture.
+Students can observe that 8 and 9 are the only consecutive perfect powers in the searched range. This finite computation is illustrative only and does not verify the theorem.
 \end{highlightbox}
 
 \section{Exercises}
@@ -313,7 +307,7 @@ Write a program to search for solutions to $x^a - y^b = 1$ with $x, y \leq 100$ 
 \end{exercise}
 
 \begin{exercise}
-In the cyclotomic field $\mathbb{Q}(\zeta_3)$, factor $y^3 + 1 = (y+1)(y+\zeta_3)(y+\zeta_3^2)$. Explain why the three factors are pairwise coprime when $y$ is even. How does this lead to the conclusion that each factor must be a cube times a unit?
+Factor $y^3+1=(y+1)(y^2-y+1)$. Show that a common divisor of these integer factors must divide 3. Explain why this observation alone does not prove Catalan's theorem.
 \end{exercise}
 
 
@@ -327,11 +321,10 @@ Write a Python/SageMath script to explore a concept from this chapter. See the a
 \toprule
 \textbf{Year} & \textbf{Event} \\ \midrule
 1844 & Catalan poses the conjecture \\ 
-1783 & Euler solves $x^2 - y^3 = 1$ \\ 
+1770 & Euler proves the exponent-3 case (published in 1783) \\
 1850 & Lebesgue solves $x^2 - y^n = 1$ \\ 
 1960 & Cassels proves $a \mid y$, $b \mid x$ for prime exponents \\ 
 1965 & Ko Chao solves the case $a = 2$ \\ 
-2000 & Mihailescu proves the double Wieferich condition \\ 
 2002 & Mihailescu completes the proof \\ 
 2004 & Proof published in Crelle's Journal \\ \bottomrule
 \end{tabularx}

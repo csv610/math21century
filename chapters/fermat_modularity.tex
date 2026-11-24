@@ -18,11 +18,11 @@
 \textbf{Example.} For $n = 2$: $3^2 + 4^2 = 5^2$ works (Pythagorean triples). For $n = 3$: is there a way to write two perfect cubes that add to a third perfect cube? Fermat claimed there is not, and that the same is true for every higher power. The theorem says the only way to split a perfect power into two perfect powers of the same degree is with squares.
 
 \subsection{Formal}
-The equation
+The equation over nonzero integers
 \begin{equation}
 x^n + y^n = z^n
 \end{equation}
-has no nonzero integer solutions for $n > 2$.
+has no solutions for $n > 2$.
 
 More deeply, the Taniyama--Shimura--Weil conjecture (now the Modularity Theorem) asserts:
 
@@ -67,13 +67,13 @@ where $4a^3 + 27b^2 \neq 0$. Elliptic curves form an abelian group under a geome
 
 \subsection{Modular Forms}
 
-A modular form is a holomorphic function on the upper half-plane satisfying a transformation law under $SL_2(\mathbb{Z})$:
+A modular form of weight $k$ and level $N$ is a holomorphic function on the upper half-plane satisfying a transformation law under a congruence subgroup (with a specified character):
 
 \begin{equation}
 f\left(\frac{az+b}{cz+d}\right) = (cz+d)^k f(z)
 \end{equation}
 
-for integers $a,b,c,d$ with $ad-bc = 1$. The Fourier expansion of a modular form encodes deep arithmetic information.
+for matrices in that subgroup; level one is only the special case of the full group $SL_2(\mathbb{Z})$. The Fourier expansion encodes arithmetic information.
 
 \subsection{The Taniyama--Shimura--Weil Conjecture}
 
@@ -128,7 +128,7 @@ Imagine you want to prove that every lock in a city can be opened by a key from 
 
 \subsection{Wiles's Proof (1993--1995)}
 
-Andrew Wiles, a British mathematician at Princeton, announced a proof of the Modularity Conjecture for semistable elliptic curves in 1993 \cite{wiles1995}. This immediately implied Fermat's Last Theorem.
+Andrew Wiles announced a proof of modularity for semistable elliptic curves in 1993 \cite{wiles1995}. Ribet's theorem then implied Fermat's Last Theorem.
 
 The proof used:
 
@@ -140,7 +140,7 @@ The proof used:
 \end{enumerate}
 
 \begin{highlightbox}
-Wiles worked in secret for seven years on this proof. He told no one except his wife. On June 21, 1993, he gave a three-hour lecture at the Isaac Newton Institute in Cambridge, England, revealing the proof. The audience sat in stunned silence when he finished.
+Wiles worked privately on the problem for several years before announcing his result in a series of lectures at the Isaac Newton Institute in June 1993.
 \end{highlightbox}
 
 \subsection{The Flaw and the Fix}
@@ -197,7 +197,7 @@ Write a Python/SageMath script to explore a concept from this chapter. See the a
 \toprule
 \textbf{Year} & \textbf{Event} \\ \midrule
 1637 & Fermat writes his marginal note \\ 
-1753 & Euler proves $n = 3$ \cite{euler1783} \\ 
+1770 & Euler publishes a proof for the exponent $n=3$ (the cited paper appeared in 1783) \cite{euler1783} \\
 1825 & Dirichlet and Legendre prove $n = 5$ \\ 
 1839 & Lam\'e proves $n = 7$ \\ 
 1984 & Frey observes the connection to elliptic curves \cite{frey1984} \\ 

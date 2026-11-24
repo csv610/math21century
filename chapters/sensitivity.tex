@@ -15,7 +15,7 @@
 
 \textbf{Constraints.} The function can be any mapping from $\{0,1\}^n$ to $\{0,1\}$---there are no restrictions on its form. The bound must hold for all $n$ and all Boolean functions. The constant $c$ must not depend on $n$ or on the specific function.
 
-\textbf{Example.} Consider the parity function: it outputs 1 if an odd number of input bits are 1, and 0 otherwise. Flipping any single bit always changes the output, so the sensitivity is 1. But you can also flip blocks of bits---for instance, flipping all $n$ bits at once always changes the output, so the block sensitivity is at least $n$. The question is whether this gap (sensitivity 1 versus block sensitivity $n$) can ever be worse than polynomial.
+\textbf{Example.} For parity on $n$ bits, every single-bit flip changes the output at every input, so $s(f)=n$. The $n$ singleton blocks are sensitive, giving $bs(f)=n$ as well.
 
 \subsection{Formal}
 \begin{conjecture}[Nisan-Szegedy, 1992]
@@ -32,7 +32,7 @@ The conjecture was posed by Nisan and Szegedy in 1992. For decades, attempts to 
 The sensitivity conjecture is about measuring the complexity of yes-or-no questions---a fundamental concept in computer science. If two different ways of measuring complexity are always closely related, it means that the complexity of a problem is a robust notion, not an artifact of how you choose to measure it. This has implications for algorithm design and the theory of computation.
 
 \subsection{Simplified Version}
-For the parity function $f(x_1, \ldots, x_n) = x_1 \oplus \cdots \oplus x_n$ (which outputs 1 if an odd number of bits are 1), the sensitivity is $\sqrt{n}$ while the block sensitivity is $n$---a quadratic gap. The conjecture asserted that this gap is always at most polynomial: $bs(f) \le s(f)^c$ for some constant $c$. Huang's 2019 proof showed $c \le 4$, settling the question.
+For parity $f(x_1,\ldots,x_n)=x_1\oplus\cdots\oplus x_n$, both sensitivity and block sensitivity equal $n$. The conjecture asks whether $bs(f)$ is bounded by a fixed power of $s(f)$ for every Boolean function; Huang's 2019 proof established the bound with exponent 4.
 
 \section{Mathematical Theory}
 
@@ -94,7 +94,7 @@ This means that restricting to a subgraph can only push eigenvalues inward, but 
 A \emph{signing} of a graph $G$ is an assignment of $\pm 1$ to each edge, producing a signed adjacency matrix $A_G$. Huang's key construction produces a signing of $Q_n$ such that:
 
 \begin{fact}
-There exists a signing of $Q_n$ such that $A^2 = nI$, making $A$ proportional to a Hadamard matrix.
+There exists a signing of $Q_n$ with a tightly controlled spectrum; the signed adjacency matrix does not in general satisfy $A^2=nI$.
 \end{fact}
 
 This is the crucial ingredient: it means the signed hypercube has all eigenvalues equal to $\pm\sqrt{n}$, giving maximum spectral gap.
@@ -102,13 +102,13 @@ This is the crucial ingredient: it means the signed hypercube has all eigenvalue
 \section{The Solution}
 
 \subsection{The Big Idea}
-Think of the Boolean hypercube as a giant network where each corner is a string of $n$ zeros and ones, and two corners are connected if they differ in exactly one bit. The question is: if flipping a few bits always changes the function's answer, must flipping \emph{bigger groups} of bits also be effective? Huang's insight was to \emph{redraw the network} with carefully chosen signs on the edges so that the signed adjacency matrix has a balanced spectrum. He then used Cauchy interlacing to show that a subset of corners associated with a Boolean function of low sensitivity must have a large edge boundary. This one-page argument settled a 27-year-old conjecture. The insight is that \emph{spectral balance is the key}: an appropriately signed adjacency matrix forces a strong boundary estimate.
+Huang's proof uses a carefully chosen signed adjacency matrix for the hypercube and spectral interlacing to establish a lower bound relating sensitivity to degree. Combined with standard inequalities among Boolean-function complexity measures, this yields the polynomial bound $bs(f)\leq s(f)^4$ and resolves the sensitivity conjecture.
 
 \subsection{What Was Stopping Progress}
 For 27 years, three major families of techniques failed. Fourier analysis could express sensitivity in terms of Fourier coefficients but could not extract polynomial bounds. Decision tree arguments gave $s(f) \leq D(f)$ but could not connect $D(f)$ back to $bs(f)$ polynomially. Hypercontractivity gave bounds on influence but could not improve beyond the exponential barrier. Each approach hit the same wall: the tools were strong enough to relate sensitivity to \emph{some} complexity measure, but not strongly enough to close the polynomial gap. The problem required a fundamentally different angle.
 
 \subsection{The Breakthrough}
-Huang's proof introduced one key idea: the \emph{signed hypercube}. The standard hypercube $Q_n$ has eigenvalues $n, n-2, \ldots, -n$---a wide spread. Huang constructed a signing of $Q_n$ such that $A^2 = nI$, meaning all eigenvalues are $\pm\sqrt{n}$. This is essentially a Hadamard matrix. Applying Cauchy interlacing to the subgraph induced by $f^{-1}(1)$ forces $s(f) \geq \sqrt{\deg(f)}$, from which $bs(f) \leq s(f)^4$ follows by standard reductions. The entire proof is just two pages.
+Huang's proof uses a signing and eigenvalue interlacing to establish a sensitivity-versus-degree inequality. Combined with known inequalities among Boolean-function complexity measures, this yields $bs(f)\leq s(f)^4$.
 
 \subsection{How It Works}
 
@@ -116,7 +116,7 @@ By the time of Huang's work in 2019, the best known bound relating block sensiti
 
 Three major families of techniques had been tried over 27 years without success. Fourier analysis could express sensitivity in terms of Fourier coefficients but could not extract polynomial bounds from them. Decision tree arguments gave $s(f) \leq D(f)$ (sensitivity bounded by decision tree depth) but could not connect $D(f)$ back to $bs(f)$ polynomially. Hypercontractivity, a powerful tool in Boolean function analysis, gave bounds on influence and noise sensitivity but could not improve beyond the exponential barrier. Each approach hit the same wall: the tools were strong enough to relate sensitivity to \emph{some} complexity measure, but not strongly enough to close the polynomial gap. The problem required a fundamentally different angle.
 
-Huang's proof introduced one key idea: the \emph{signed hypercube}. The standard hypercube $Q_n$ has adjacency matrix with eigenvalues $n, n-2, \ldots, -n$---a wide spread. Huang constructed a \emph{signing} (assigning $\pm 1$ to edges) of $Q_n$ such that the signed adjacency matrix $A$ satisfies $A^2 = nI$, meaning all eigenvalues are $\pm\sqrt{n}$. This is essentially a Hadamard matrix. He then applied the Cauchy interlacing theorem to the subgraph induced by $f^{-1}(1)$: since the signed hypercube has all eigenvalues at $\pm\sqrt{n}$, the induced subgraph must have an eigenvalue $\geq \sqrt{n}$, which implies minimum degree $\geq \sqrt{n}$. This gives $s(f) \geq \sqrt{\deg(f)}$, from which $bs(f) \leq s(f)^4$ follows by standard reductions. The entire proof is just two pages.
+Huang's argument uses a signing and eigenvalue interlacing to prove a sensitivity-versus-degree inequality. The signed matrix does not simply have $A^2=nI$, and the proof does not infer a minimum-degree bound directly from interlacing. Together with established inequalities for Boolean functions, Huang's estimate gives $bs(f)\leq s(f)^4$.
 
 \begin{theorem}[Huang \cite{huang2019}]
 $s(f) \ge \sqrt{\deg(f)}$, hence $bs(f) \le s(f)^4$.
@@ -126,7 +126,7 @@ Huang's proof is famously short (2 pages) and uses only spectral graph theory:
 
 \begin{enumerate}
 \item Consider the $n$-dimensional hypercube graph $Q_n$, whose vertices are $\{0,1\}^n$ and edges connect strings differing in one coordinate.
-\item Construct a signing of the adjacency matrix $A$ of $Q_n$ such that $A^2 = nI$ (a Hadamard matrix structure).
+\item Construct a signing of the adjacency matrix $A$ of $Q_n$ with the spectral properties used in Huang's argument; do not assume $A^2=nI$.
 \item By the Cauchy interlacing theorem, the subgraph induced by $f^{-1}(1)$ has an eigenvalue $\ge \sqrt{n}$.
 \item This implies the subgraph has minimum degree $\ge \sqrt{n}$, so $s(f) \ge \sqrt{n}$.
 \item Since $\deg(f) = n$ for the parity function, $s(f) \ge \sqrt{\deg(f)}$.
@@ -259,7 +259,7 @@ Explain the Cauchy interlacing theorem: if $A$ is an $n \times n$ symmetric matr
 \end{exercise}
 
 \begin{exercise}[Challenge]
-Sketch Huang's construction of the signing of $Q_n$'s adjacency matrix. Why does $A^2 = nI$ hold?
+Sketch Huang's construction of the signing of $Q_n$'s adjacency matrix. What spectral property of the signing is used in Huang's argument?
 \end{exercise}
 
 \section{Timeline}

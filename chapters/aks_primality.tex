@@ -144,7 +144,7 @@ The original AKS paper ran in $\tilde{O}((\log n)^{12})$. Subsequent improvement
 
 \begin{itemize}
 \item Bernstein (2003): practical optimizations, $\tilde{O}((\log n)^{12})$ with smaller constants.
-\item Lenstra and Pomerance (2011): improved the theoretical bound to $\tilde{O}((\log n)^3)$, which is close to optimal \cite{lenstra2011}.
+\item Lenstra and Pomerance (2011): obtained a deterministic bound of the form $(\log n)^6(2+\log\log n)^{c_0}$, for an absolute constant $c_0$ \cite{lenstra2011}.
 \item Cohen and Lenstra (2003): various structural optimizations \cite{bernstein2006}.
 \end{itemize}
 
@@ -166,7 +166,7 @@ The AKS result is completely settled: PRIMES $\in$ P is a theorem, and the quest
 
 However, the AKS algorithm is not practical. It is far too slow compared to probabilistic tests like Miller--Rabin, which are both faster and simple enough to implement. In real-world cryptography, nobody uses AKS. Its importance is theoretical: it settled a fundamental question about the boundary between efficient and inefficient computation. The proof also introduced new connections between algebraic number theory (cyclotomic fields, order of elements in multiplicative groups) and computational complexity that continue to inspire research.
 
-On the quantitative side, room for improvement remains. The original AKS algorithm ran in $\tilde{O}((\log n)^{12})$ time, which was quickly reduced to $\tilde{O}((\log n)^6)$ and eventually to $\tilde{O}((\log n)^3)$ by Lenstra and Pomerance in 2011. Whether the exponent can be reduced further---perhaps to $\tilde{O}((\log n)^2)$ or even $\tilde{O}(\log n)$---is an open question. The Lenstra--Pomerance bound is conjectured to be close to optimal, but a matching lower bound is not known. Beyond speed, there is also the question of whether the underlying ideas can be used to construct other efficient deterministic algorithms for related algebraic problems.
+On the quantitative side, later analyses improved the original AKS bound. The Lenstra--Pomerance bound cited here is $(\log n)^6(2+\log\log n)^{c_0}$; different variants and soft-O conventions account for other exponents in the literature. A matching lower bound is not known.
 
 \section{Impact}
 
@@ -185,8 +185,14 @@ The AKS primality test can be implemented and verified computationally. The foll
 The simplest version of the AKS test checks whether $(X+a)^n \equiv X^n + a \pmod{n}$ as polynomials.
 
 \begin{verbatim}
+from math import gcd
+
 def aks_criterion(n, a=2):
     """Check if n passes the AKS polynomial test for base a."""
+    # This degree-n check is not the fast AKS algorithm.
+    # The criterion requires gcd(a, n) = 1.
+    if n < 2 or gcd(a, n) != 1:
+        return False
     # Expand (X + a)^n mod n as a polynomial
     # Use the binomial theorem: coefficient of X^k is C(n,k) * a^(n-k)
     coeffs = []
@@ -297,7 +303,7 @@ Write a Python/SageMath script to explore a concept from this chapter. See the a
 1980s & Various probabilistic tests (Solovay--Strassen, Fermat test) \\ 
 2002 & Agrawal, Kayal, Saxena publish the AKS algorithm \cite{agrawal2004} \\ 
 2003 & Cohen and Lenstra optimize the algorithm \cite{bernstein2006} \\ 
-2011 & Lenstra and Pomerance achieve $\tilde{O}((\log n)^3)$ \cite{lenstra2011} \\ \bottomrule
+2011 & Lenstra and Pomerance obtain a deterministic bound of the form $(\log n)^6(2+\log\log n)^{c_0}$ \cite{lenstra2011} \\ \bottomrule
 \end{tabularx}
 
 \section{Citations}

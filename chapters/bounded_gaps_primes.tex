@@ -28,7 +28,7 @@ This means that prime gaps can be arbitrarily small compared to the average gap 
 The Twin Prime Conjecture is one of the oldest unsolved problems in mathematics. Euclid's Elements (c.\ 300 BCE) discusses the infinitude of primes, but the twin prime question emerged naturally from early number theory.
 
 \subsection{What Was Known}
-The twin prime conjecture---that there are infinitely many pairs of primes differing by exactly 2---had been open since the 1800s. In 2005, Goldston, Pintz, and Yildirim proved that prime gaps can be arbitrarily small compared to the average gap, but only under an unproven assumption about the distribution of primes. Without that assumption, they could not prove the gaps were bounded.
+The twin prime conjecture---that there are infinitely many pairs of primes differing by exactly 2---had been open since the 1800s. Goldston, Pintz, and Yildirim unconditionally proved that $\liminf (p_{n+1}-p_n)/\log p_n=0$. Under the Elliott--Halberstam conjecture they also obtained a bounded-gap result.
 
 \subsection{Why It Matters}
 Understanding the gaps between primes has deep implications for cryptography, where the security of online transactions depends on the difficulty of factoring large numbers. It also connects to one of the oldest questions in mathematics: how are primes distributed along the number line? Zhang's breakthrough showed that primes are not as spread out as they appear---they cluster more tightly than anyone had been able to prove.
@@ -64,13 +64,13 @@ Goldston, Pintz, and Yildirim (2009) introduced a novel sieve method that gave u
 \item Consider the von Mangoldt function $\Lambda(n)$, which equals $\log p$ if $n = p^k$ and 0 otherwise.
 \item Study the sum $\sum_{n \leq x} \left(\sum_{i=1}^k \Lambda(n+h_i)\right)^2$.
 \item Choose weights carefully to detect clusters of primes.
-\item Use the Riemann zeta function's zeros to optimize the weights.
+\item Choose Selberg sieve weights to emphasize tuples with few small prime factors.
 \end{enumerate}
 
-Their key innovation was using a \emph{weighted sieve} with a carefully chosen weight function that exploits the distribution of zeros of the Riemann zeta function near the critical line.
+Their key innovation was a weighted Selberg sieve and estimates for primes in arithmetic progressions, not an optimization based on zeta zeros.
 
 \begin{theorem}[Goldston--Pintz--Yildirim, 2009 \cite{gpy2009}]
-Assuming the Generalized Riemann Hypothesis, there exist infinitely many pairs of consecutive primes with gap $O(\sqrt{p_n} \log p_n)$. Unconditionally, they proved that the liminf of the ratio of consecutive prime gaps to $\sqrt{p_n} \log p_n$ is 0.
+Unconditionally, GPY proved $\liminf_{n\to\infty}(p_{n+1}-p_n)/\log p_n=0$. Under Elliott--Halberstam they obtained a bounded-gap result; this conditional result is distinct from the unconditional relative-gap theorem.
 \end{theorem}
 
 \section{The Solution}
@@ -111,7 +111,7 @@ Zhang's key innovation was a refinement of the \emph{Selberg sieve} combined wit
 Immediately after Zhang's announcement:
 
 \begin{itemize}
-\item The \emph{Polymath Project} (led by Timothy Gowers) collaboratively improved the bound from 70 million to 2,468 \cite{polymath2014}.
+\item The \emph{Polymath Project} successively reduced Zhang's 70-million bound to 4,680; Maynard then obtained 600, and Polymath8b reduced the unconditional bound to 246 \cite{polymath2014}.
 \item James Maynard (Oxford) independently developed a simpler approach that gave the bound 600 \cite{maynard2015}.
 \item Terence Tao coordinated the Polymath effort to optimize Zhang's method.
 \end{itemize}
@@ -126,23 +126,23 @@ There exist infinitely many pairs of primes with gap at most 246.
 
 \subsection{After the Proof}
 
-The question of bounded gaps between primes is partially settled. Zhang proved that some bounded gap occurs infinitely often, and the bound has been reduced to 246 by the Polymath project and Maynard. This is unconditional: no unproven assumptions are needed. But the Twin Prime Conjecture---that the gap of 2 occurs infinitely often---remains wide open. Under the assumption that the Elliott--Halberstam conjecture is true, the bound drops to 6, which is tantalizingly close to 2 but still not 2.
+The question of bounded gaps between primes is partially settled. The unconditional bound is 246. The conditional bound 6 requires the generalized Elliott--Halberstam conjecture; ordinary Elliott--Halberstam yields 12 in the Maynard framework. The twin prime conjecture remains open.
 
 The Maynard--Tao methods have unlocked a broad new range of results beyond twin primes. Maynard's multidimensional sieve gives not just bounded gaps between pairs of primes, but bounded gaps for $m$-tuples: for any $m$, there are infinitely many intervals of bounded length containing at least $m$ primes. This means clusters of primes are far more common than previously provable. These techniques have also been applied to problems about primes in polynomial sequences, smooth numbers, and other additive structures.
 
-The main open question is whether the bound can be reduced below 246 unconditionally, and ultimately to 2. There is a structural barrier in the current methods: reducing the bound below 6 would require new ideas beyond the Elliott--Halberstam framework. A related open problem is the Hardy--Littlewood prime $k$-tuples conjecture, which predicts exact formulas for how often any given pattern of primes occurs. Proving this conjecture would resolve the twin prime question and much more, but it remains far out of reach.
+The twin prime conjecture remains open. The Hardy--Littlewood prime $k$-tuples conjecture predicts asymptotic formulas for admissible prime patterns and would imply infinitely many twin primes.
 
 \section{Impact}
 
 \begin{itemize}
-\item \textbf{Prime gaps}: Zhang's proof opened an entirely new area of analytic number theory. The bound has since been improved to 246 (unconditionally) and 6 (assuming the Elliott--Halberstam conjecture).
+\item \textbf{Prime gaps}: Zhang's proof opened an entirely new area of analytic number theory. The unconditional bound is 246; a bound of 6 follows under generalized Elliott--Halberstam.
 \item \textbf{Polymath collaboration}: The Polymath Project became a model for collaborative online mathematics.
 \item \textbf{Sieve theory}: Zhang's techniques have been applied to many other problems in additive number theory.
 \item \textbf{Yitang Zhang's story}: Zhang's journey from working as a delivery driver and sandwich maker to making a groundbreaking mathematical discovery became widely publicized.
 \end{itemize}
 
 \begin{highlightbox}
-As of 2025, the Twin Prime Conjecture remains unproven, but the gap between 1849 (when Alphonse de Polignac first proposed it) and 2013 (Zhang's proof) is 164 years. Zhang's proof represents the closest anyone has come to resolving it.
+The Twin Prime Conjecture remains open; bounded-gap results do not prove that a gap of 2 occurs infinitely often. Numerical improvements should be labeled by their publication status and assumptions.
 \end{highlightbox}
 
 \section{Computational Verification}

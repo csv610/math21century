@@ -18,11 +18,7 @@
 \textbf{Example.} For the simplest non-abelian case, $GL_2$ (the group of $2 \times 2$ invertible matrices), the identity was verified computationally and proved by Labesse and Langlands in 1988. The general case, proved by Ngo Bao Chau in 2009, required showing that the same identity holds for all groups, regardless of size or complexity.
 
 \subsection{Formal}
-The fundamental lemma of endoscopy is an identity relating orbital integrals on a reductive group $G$ to orbital integrals on its endoscopic groups $H$. For a stable orbital integral $\mathrm{SOI}_G(f)$ on $G$ and an endoscopic group $H$, the lemma asserts:
-\[
-\mathrm{SOI}_G(f) = \sum_{H} c_H \cdot \mathrm{OI}_H(f_H)
-\]
-where $f_H$ is a transfer of $f$ from $G$ to $H$, and $c_H$ are explicit constants. This identity was conjectured by Langlands and Shelstad in the 1980s and is a key ingredient in the Langlands program.
+The fundamental lemma is a family of identities for matching test functions and regular semisimple elements on a reductive group and its endoscopic groups. In the unramified form, it compares stable orbital integrals of the unit Hecke-algebra function with corresponding orbital integrals on the endoscopic group, with transfer factors and normalizations fixed by the endoscopic datum. There is no single identity of the schematic form “one stable integral equals an unweighted sum.” Langlands and Shelstad formulated the relevant conjectures in the 1980s.
 
 \subsection{Historical Context}
 The Fundamental Lemma was the single biggest obstacle to the Langlands program for decades. Langlands himself called it ``the most important open problem in the theory of automorphic forms.''
@@ -82,7 +78,7 @@ In essence: the orbital integrals on endoscopic groups match. This seems technic
 
 Imagine you owe your friend a proof that two impossibly complicated recipes produce the same dish. You could try cooking both dishes from scratch and comparing them bite by bite---but the recipes each have a million steps, and that approach would take a lifetime. Instead, you realize both recipes are actually \emph{shadow recipes}: they are projections of a single, simpler recipe operating in a higher-dimensional kitchen. The equality follows for free because there is really only \emph{one} dish being projected two different ways.
 
-That is Ngo Bao Chau's insight. The Fundamental Lemma asks whether two enormous integrals---orbital integrals on a group and its endoscopic partner---are equal. Nobody could prove this by computing the integrals directly. Ngo showed that both integrals are really counting points on fibers of the same geometric object: the \emph{Hitchin fibration}. The equality is not a numerical coincidence but a shadow of a single geometric truth.
+Ngô's proof did not identify the two orbital integrals with point counts on one shared space. It globalized the problem and related the Lie-algebra fundamental lemma to the geometry and cohomology of Hitchin fibrations, where the support theorem supplied the needed comparison.
 
 \subsection{What Was Stopping Progress}
 
@@ -90,13 +86,13 @@ For 27 years, mathematicians tried to prove the identity by brute force: compute
 
 \subsection{The Breakthrough}
 
-Ngo realized that you do not need to compute the integrals at all. Instead, you reinterpret them as \emph{counts of geometric objects}---points on fibers of the Hitchin fibration. Once both sides of the identity are understood as counting the same kind of geometric shape, the equality follows from the geometry of those shapes, not from any calculation. The problem was not an analytic identity hiding among formulas; it was a geometric identity hiding among varieties.
+Ngô replaced direct comparison of local integrals by a global geometric argument. In the relevant settings, orbital integrals are linked to geometry of affine Springer fibers and Hitchin fibrations; cohomological support properties then yield the required identity.
 
 \subsection{How It Works}
 
-In 2008, Ngo Bao Chau announced a proof of the Fundamental Lemma that was revolutionary precisely because it changed the question entirely. Instead of computing orbital integrals directly, Ngo showed the identity follows from a geometric statement about the \emph{Hitchin fibration}.
+In 2008, Ngô Bảo Châu announced a proof of the Lie-algebra version of the Fundamental Lemma using a global geometric argument organized around Hitchin fibrations. The passage from the Lie-algebra statement to the full group version uses additional transfer results; there is no single Hitchin fibration common to arbitrary reductive groups.
 
-The Hitchin fibration is a map from the moduli space of Higgs bundles (roughly: pairs of a geometric shape and a field on it satisfying certain equations) to an affine space parameterizing the ``type'' of the Higgs bundle. Ngo showed that the Fundamental Lemma is equivalent to a statement about the cohomology of fibers of this map. This ``geometrization'' transformed an analytic problem into a geometric one, where powerful tools from algebraic geometry---perverse sheaves, intersection cohomology, and the theory developed by Beilinson, Bernstein, Deligne, and Gabber---could be brought to bear.
+For suitable groups and global curves, Hitchin fibrations organize the geometry used in Ngô's proof. Orbital-integral identities are related to cohomology of fibers through specific moduli problems and trace formulas; they are not literal point counts on one common Hitchin fiber. Perverse sheaves and the support theorem provide key geometric tools.
 
 Concretely, Ngo's proof proceeds in several stages:
 
@@ -107,8 +103,8 @@ Concretely, Ngo's proof proceeds in several stages:
 \item \textbf{The support conjecture}: The deepest technical step is proving a conjecture of Langlands and Shelstad about the support of certain functions on the affine Grassmannian. Ngo shows this follows from the geometry of the Hitchin fibration and the properties of perverse sheaves---turning a conjecture about numbers into a theorem about geometry.
 \end{enumerate}
 
-\begin{theorem}[Ngo, 2010 \cite{ngo2010}]
-The Fundamental Lemma of Langlands--Shelstad holds for all reductive groups over $p$-adic fields.
+\begin{theorem}[Ngô, 2010 \cite{ngo2010}]
+Ngô proved the Lie-algebra fundamental lemma for the relevant unramified endoscopic data. The full group fundamental lemma follows with additional transfer arguments.
 \end{theorem}
 
 The proof appeared in two parts:

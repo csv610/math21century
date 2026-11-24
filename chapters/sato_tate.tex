@@ -86,7 +86,7 @@ where $C_n = \frac{1}{n+1}\binom{2n}{n}$ are Catalan numbers. Verifying these mo
 
 You want to prove that the ``wobble'' in the number of points on an elliptic curve follows a specific bell-shaped pattern as you range over primes. For any \emph{single} curve, the modularity theorem matches it to a modular form, and basic harmonic analysis on modular forms gives the equidistribution for free. But proving this for \emph{all} non-CM curves at once seems impossible---you would need to know the modular form attached to every curve simultaneously.
 
-The trick is to sidestep this entirely. Instead of proving each curve is modular over $\mathbb{Q}$, you show that every curve \emph{becomes} modular after you move to a larger number field---like shifting a puzzle into a bigger room where it suddenly becomes easy to solve. This is \emph{potential automorphy}. Once you are in the bigger room, equidistribution is automatic from harmonic analysis. The stable trace formula acts as an elevator that carries the equidistribution result back down to the original setting.
+The trick is to sidestep this entirely. Instead of proving each curve is modular over $\mathbb{Q}$, you show that every curve \emph{becomes} modular after you move to a larger number field---like shifting a puzzle into a bigger room where it suddenly becomes easy to solve. This is \emph{potential automorphy}. Potential automorphy is combined with automorphy lifting and analytic properties of symmetric-power $L$-functions; equidistribution does not follow by an automatic descent.
 
 \subsection{What Was Stopping Progress}
 
@@ -94,7 +94,7 @@ The modularity theorem (Wiles, BCDT) tells you each elliptic curve corresponds t
 
 \subsection{The Breakthrough}
 
-Clozel, Harris, Shepherd-Barron, and Taylor introduced \textbf{potential automorphy}: instead of proving automorphy over $\mathbb{Q}$ directly, show that the Galois representation \emph{becomes} automorphic after a solvable base change to a larger field. Automorphy is preserved under base change, and the stable trace formula lets you compare with CM cases (where equidistribution is already known). The logical chain is: base change $\to$ automorphy on the bigger field $\to$ equidistribution from harmonic analysis $\to$ trace formula back to $\mathbb{Q}$.
+Clozel, Harris, Shepherd-Barron, and Taylor introduced \textbf{potential automorphy}: instead of proving automorphy over $\mathbb{Q}$ directly, show that the Galois representation \emph{becomes} automorphic after a solvable base change to a larger field. Potential automorphy is combined with automorphy lifting and analytic properties of symmetric-power $L$-functions to establish equidistribution; this is not a simple descent from a CM case.
 
 \subsection{How It Works}
 

@@ -15,7 +15,7 @@
 
 \textbf{Constraints.} The manifold must be framed (equipped with a consistent trivialization of its tangent bundle). The Kervaire invariant is only defined in dimensions of the form $2^k - 2$ (dimensions 2, 6, 14, 30, 62, 126, 254, and so on). In other dimensions, no framed manifold can have Kervaire invariant 1.
 
-\textbf{Example.} In dimension 2, the ordinary 2-sphere has Kervaire invariant 0, but certain framed manifolds in dimension 6, 14, 30, and 62 have Kervaire invariant 1. The question is whether dimension 126 (the next candidate) also admits such a manifold, or whether 62 is the last one.
+\textbf{Example.} Framed manifolds with Kervaire invariant 1 are known in dimensions 2, 6, 14, 30, and 62. Whether one exists in dimension 126 remains open.
 
 \subsection{Formal}
 For which dimensions $n$ does there exist a framed manifold with Kervaire invariant equal to 1?
@@ -23,19 +23,19 @@ For which dimensions $n$ does there exist a framed manifold with Kervaire invari
 Such manifolds exist in dimension 2 (trivially), and have been constructed in dimensions 6, 14, 30, and 62. The possible dimensions are:
 \[2, 6, 14, 30, 62, 126, 254, \ldots\]
 
-The open question is whether any framed manifold with Kervaire invariant 1 exists in dimensions $126, 254, 510, \ldots$ (i.e., dimensions $2^k - 2$ for $k \geq 8$).
+The dimension-126 case remains open. Hill, Hopkins, and Ravenel proved nonexistence in dimensions $2^k-2$ for $k\geq 8$, beginning with 254.
 
 \subsection{Historical Context}
 The Kervaire invariant problem sat at the intersection of algebraic topology and differential topology. It was a deceptively simple question about the existence of certain manifolds, but its resolution required some of the deepest machinery in stable homotopy theory.
 
 \subsection{What Was Known}
-Kervaire showed in 1960 that certain manifolds have Kervaire invariant 1 in dimension 10, and he also found examples in dimensions 26, 62, and 126. In 1969, Browder proved that Kervaire invariant 1 can only occur in dimensions of the form $2^k - 2$. This left open the question for dimensions 126, 510, 8190, and infinitely many others. The Hill--Hopkins--Ravenel proof settled all remaining cases except dimension 126.
+Examples are known in dimensions 2, 6, 14, 30, and 62. In 1969, Browder proved that Kervaire invariant 1 can occur only in dimensions $2^k-2$. Hill, Hopkins, and Ravenel later ruled out all cases with $k\geq 8$, leaving dimension 126 ($k=7$) unresolved.
 
 \subsection{Why It Matters}
 The Kervaire invariant question touches the deepest layers of topology---the study of shapes and spaces. Understanding which dimensions admit exotic structures helps mathematicians classify all possible geometric objects, much like the periodic table classifies chemical elements. The result also connects to string theory and quantum field theory, where the dimension of spacetime matters.
 
 \subsection{Simplified Version}
-The Kervaire invariant is known to equal 1 in dimensions 2, 6, 14, 30, and 62---these correspond to the exotic spheres discovered by Milnor and Kervaire. The question was whether dimension 126 (the next candidate, following the pattern $2^{k+1}-2$) also admits a Kervaire-invariant-one manifold. The Hill--Hopkins--Ravenel proof showed it does not, and neither does any higher dimension.
+Examples with Kervaire invariant 1 are known in dimensions 2, 6, 14, 30, and 62. The dimension-126 case remains open; Hill--Hopkins--Ravenel ruled out the candidate dimensions $2^k-2$ for $k\geq8$.
 
 \section{Mathematical Theory}
 
@@ -68,7 +68,7 @@ This reduced the problem to checking whether the invariant is 1 in dimensions $2
 
 \subsection{The Remaining Case}
 
-The dimensions $2, 6, 14, 30, 62$ were known to admit manifolds with Kervaire invariant 1. The question was whether any dimension $2^k - 2$ for $k \geq 8$ (i.e., $126, 254, \ldots$) admitted such a manifold.
+The dimensions $2, 6, 14, 30, 62$ were known to admit manifolds with Kervaire invariant 1. The dimension-126 case ($k=7$) remains open; Hill--Hopkins--Ravenel ruled out candidate dimensions for $k\geq8$, starting at 254.
 
 \subsection{Stable Homotopy Groups and the Adams Spectral Sequence}
 
@@ -86,7 +86,7 @@ The elements $\theta_j$ (if they exist) would be detected by certain classes $h_
 
 \subsection{The Big Idea}
 
-The Kervaire invariant one problem asks whether certain exotic manifolds exist in high dimensions. Hill, Hopkins, and Ravenel's strategy is to construct a \emph{detection theory}: a cohomological invariant that is (1)~sensitive enough to see Kervaire invariant one elements when they exist, and (2)~structured enough to prove they vanish. The theory is \textbf{topological modular forms (TMF)}, built from the \textbf{equivariant stable homotopy theory} of the Morava stabilizer group $G_n$ at the prime 2. The key mechanism is the \textbf{norm map}: TMF is constructed as a fixed-point spectrum $P_n^{hG_n}$ for $G_n$-action on a spectrum $P_n$, and the norm $N: P_n \to P_n^{hG_n}$ is a map that ``averages'' over the group action. Kervaire invariant one elements correspond to specific classes in the homotopy of $P_n$ that must map to zero under $N$ in dimensions 126 and above---this is forced by the \textbf{real periodicity} of TMF (period 8, from the image-of-$J$ spectrum) and the structure of the norm map in high dimensions. Below dimension 126, the norm is surjective and the elements survive; above 126, the norm factors through a group where these classes must vanish.
+Hill, Hopkins, and Ravenel constructed a highly structured $C_8$-equivariant spectrum and used equivariant stable homotopy theory to obstruct Kervaire invariant one classes. Their argument uses equivariant homotopy fixed-point and geometric fixed-point methods together with periodicity and vanishing results. It is not a direct computation in ordinary topological modular forms; the dimension-126 case is not ruled out by their theorem.
 
 \subsection{What Was Stopping Progress}
 
@@ -102,25 +102,21 @@ Hill, Hopkins, and Ravenel constructed a map from the stable homotopy of spheres
 
 \subsection{How It Works}
 
-The Hill--Hopkins--Ravenel proof introduced a fundamentally new strategy: instead of working directly in the stable homotopy groups of spheres, they constructed a map to a \emph{different} cohomological world---topological modular forms (TMF)---where the computations are more tractable.
+The Hill--Hopkins--Ravenel proof introduced new equivariant stable homotopy methods to obstruct the relevant elements in high dimensions.
 
 \begin{enumerate}
-\item \textbf{Topological modular forms (TMF):} TMF is a generalized cohomology theory that encodes deep connections between algebraic topology and the theory of modular forms (objects from number theory). It was constructed by Hopkins and Miller, and its existence was a major achievement of 21st-century homotopy theory. The key property is that TMF is ``sensitive'' to the kind of phenomena that Kervaire invariant one elements produce: TMF can see them when they exist.
+\item \textbf{Equivariant spectra:} The authors built a structured $C_8$-equivariant spectrum tailored to the Kervaire invariant problem.
 
 \item \textbf{The equivariant construction:} To make TMF work as a detector, Hill, Hopkins, and Ravenel developed \emph{equivariant} versions of TMF---cohomology theories that incorporate the actions of finite groups. The group $\mathbb{Z}/2$ acts on the relevant spaces, and by working equivariantly, one can construct maps from the sphere spectrum to TMF that carry more information than the non-equivariant maps.
 
-\item \textbf{The key computation:} The proof constructs a specific map
-\[
-\Theta: S^0 \to \mathrm{TMF}
-\]
-from the sphere spectrum to TMF, and then shows that the Kervaire invariant one elements $\theta_j$ must map to zero under $\Theta$ for $j \geq 8$. But TMF also has a property (called ``multiplicative structure'') that forces $\Theta(\theta_j) = 0$ to imply $\theta_j = 0$ in stable homotopy. The computation that $\Theta(\theta_j) = 0$ is carried out using the algebraic structure of TMF, which is much more tractable than the original Adams spectral sequence computation.
+\item \textbf{The obstruction:} Equivariant homotopy-theoretic vanishing and periodicity arguments rule out Kervaire invariant one elements for the candidate dimensions indexed by $k\geq8$.
 \end{enumerate}
 
 \begin{theorem}[Hill--Hopkins--Ravenel, 2016 \cite{hill2016}]
-The Kervaire invariant is 0 in all dimensions $2^k - 2$ for $k \geq 8$.
+There is no framed manifold with Kervaire invariant one in dimension $2^k-2$ for $k\geq8$ (that is, dimensions 254 and above in this sequence). The case $k=7$, dimension 126, remains unresolved.
 \end{theorem}
 
-Equivalently, the Kervaire invariant is 1 only in dimensions $2, 6, 14, 30, 62$. There is no example in dimension 126 or higher.
+Thus known examples occur in dimensions 2, 6, 14, 30, and 62; dimension 126 remains open.
 
 \begin{highlightbox}
 The proof was a tour de force of modern algebraic topology. It combined topological modular forms, equivariant homotopy theory, and the Adams spectral sequence in a novel way that had never been attempted before.
@@ -139,14 +135,14 @@ The proof was a tour de force of modern algebraic topology. It combined topologi
 \subsection{Subsequent Developments}
 
 \begin{itemize}
-\item The result was formally verified in Lean by the Liquid Tensor Experiment team (2021--2023), demonstrating that even the most complex proofs in algebraic topology can be machine-checked.
+\item The Liquid Tensor Experiment formalized major results in condensed mathematics; it did not formalize the Hill--Hopkins--Ravenel proof.
 \item The techniques have been extended to study the stable homotopy groups of spheres at odd primes, opening new avenues in computational homotopy theory.
 \item The method of using TMF as a computational tool has become a standard technique, applied to other problems in stable homotopy theory.
 \end{itemize}
 
 \subsection{After the Proof}
 
-The Kervaire invariant one problem is settled in all known dimensions: framed manifolds with Kervaire invariant one exist only in dimensions 2, 6, 14, 30, and 62. The Hill--Hopkins--Ravenel proof settled all cases where $k \ge 8$, leaving no open dimensions among those that Browder's theorem predicted. The result is complete within its original formulation.
+Framed manifolds with Kervaire invariant one are known in dimensions 2, 6, 14, 30, and 62. Hill--Hopkins--Ravenel ruled out dimensions $2^k-2$ for $k\geq8$; the dimension-126 case remains open.
 
 The proof spawned entirely new techniques in algebraic topology. Topological modular forms (TMF), which had been constructed earlier but were not yet a computational workhorse, became a standard tool in stable homotopy theory after this proof demonstrated their power. The equivariant versions of TMF developed by Hill, Hopkins, and Ravenel have been applied to other problems in homotopy theory. The formal verification of the proof in Lean (the Liquid Tensor Experiment) also demonstrated that even the most complex proofs in topology can be machine-checked, setting a precedent for formalized mathematics.
 

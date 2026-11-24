@@ -38,7 +38,7 @@ The problem was posed in 1959 and was known to be equivalent to several other im
 The Kadison--Singer problem sits at the crossroads of quantum physics, signal processing, and pure mathematics. A positive answer means that incomplete quantum measurements can always be completed consistently. This has implications for how we understand measurement in quantum mechanics and how we process incomplete data in engineering.
 
 \subsection{Simplified Version}
-The problem is equivalent to the Paving Conjecture: given an infinite-dimensional diagonal operator $D$ with bounded entries, can the basis vectors be partitioned into finitely many blocks such that each block is nearly orthogonal? This was verified numerically for many examples before the proof. Weaver had conjectured a finite-dimensional reformulation (Weaver's conjecture $KS_2$) that was already checked for small matrices. The breakthrough came from showing that Weaver's conjecture holds in general via the ``few moments'' method.
+The paving conjecture is an equivalent formulation: small-diagonal projections can be partitioned so that each compressed projection has norm bounded below 1. Weaver gave a finite-dimensional vector formulation, proved by Marcus, Spielman, and Srivastava using interlacing polynomials.
 
 \section{Mathematical Theory}
 
@@ -56,7 +56,7 @@ In signal processing, a \emph{frame} is a generalization of an orthonormal basis
 \begin{equation}
 A \|x\|^2 \leq \sum_{i \in I} |\langle x, \phi_i \rangle|^2 \leq B \|x\|^2
 \end{equation}
-for all $x \in H$. The Kadison--Singer problem is equivalent to the statement that any frame can be partitioned into a finite number of subsets, each of which is a frame with controlled bounds.
+for all $x \in H$. One equivalent frame statement is the Feichtinger conjecture: every bounded frame can be partitioned into finitely many Riesz sequences. It does not assert that each part remains a frame.
 
 \subsection{Bipartite Ramanujan Graphs}
 A $d$-regular graph is \emph{Ramanujan} if its adjacency matrix eigenvalues (excluding $\pm d$) have absolute value at most $2\sqrt{d-1}$. Ramanujan graphs are optimal expanders. In 2013, Marcus, Spielman, and Srivastava used the Kadison--Singer problem to prove the existence of bipartite Ramanujan graphs of all degrees.
@@ -86,7 +86,7 @@ In 2013, Adam Marcus, Daniel Spielman, and Nikhil Srivastava solved the Kadison-
 \begin{theorem}[Marcus--Spielman--Srivastava, 2013]
 The Kadison--Singer Paving Conjecture is true. Specifically, for any vectors $v_1, \ldots, v_m$ in $\mathbb{C}^d$ such that $\sum_{i=1}^m v_i v_i^T = I$ and $\|v_i\|^2 \leq \epsilon$, there exists a partition of $\{1, \ldots, m\}$ into two sets $S_1, S_2$ such that:
 \begin{equation}
-\left\|\sum_{i \in S_j} v_i v_i^T\right\| \leq \frac{(1 + \sqrt{\epsilon})^2}{2}
+\left\|\sum_{i \in S_j} v_i v_i^*\right\| \leq \left(\frac{1}{\sqrt{2}}+\sqrt{\epsilon}\right)^2
 \end{equation}
 for $j=1,2$.
 \end{theorem}
@@ -105,7 +105,7 @@ The Marcus--Spielman--Srivastava proof settled Kadison--Singer by converting an 
 
 \subsection{After the Proof}
 
-The Kadison--Singer problem is completely settled. The Paving Conjecture is true, and all its equivalent formulations---the Feichtinger conjecture in harmonic analysis, the Weaver conjectures in combinatorics, the existence of certain Ramanujan graphs---follow as corollaries. There is no remaining doubt about the qualitative result.
+The Kadison--Singer problem is settled, as are its equivalent paving and Weaver formulations and the Feichtinger conjecture. The MSS existence results for bipartite Ramanujan graphs are a related application of interlacing polynomials, not a corollary of the paving theorem.
 
 What the proof unlocked, though, may be even more important than the result itself. The method of interlacing families of polynomials has become a major tool across combinatorics, theoretical computer science, and signal processing. It has been used to construct optimal expanders, analyze random structures, and prove existence results that were previously inaccessible. The interlacing families framework converts questions about eigenvalues of random matrices into questions about roots of polynomials, which are far more tractable. This connection between algebraic and probabilistic reasoning has opened up many new research directions.
 
@@ -115,7 +115,7 @@ Open questions remain at the quantitative level. The paving bound---how many pie
 \begin{itemize}
 \item \textbf{Operator Algebras}: Resolved the 1959 Kadison--Singer C*-algebra conjecture.
 \item \textbf{Signal Processing}: Proved that every frame can be paved, ensuring stable partitions in transmission codes.
-\item \textbf{Computer Science}: Provided a deterministic construction of bipartite Ramanujan graphs of all degrees, solving a long-standing open problem in network design.
+\item \textbf{Computer Science}: Proved existence of bipartite Ramanujan graphs of every degree using interlacing-family methods.
 \end{itemize}
 
 \section{Exercises}

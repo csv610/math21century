@@ -94,12 +94,12 @@ The 26 sporadic groups are \cite{conway1985}:
 \item Monster (Fischer--Griess): $\mathbb{M}$
 \end{enumerate}
 
-The largest sporadic group is the Monster $\mathbb{M}$, with order approximately $8 \times 10^{53}$. Its discovery by Fischer and Griess (1982) led to the surprising \emph{Monstrous Moonshine} phenomenon linking the Monster to modular forms \cite{conway1979}.
+The largest sporadic group is the Monster $\mathbb{M}$, with order approximately $8 \times 10^{53}$. Conway and Norton formulated the Monstrous Moonshine conjectures in 1979, before Griess constructed the Monster in 1982; Borcherds later proved the principal moonshine conjecture \cite{conway1979}.
 
 \section{The Solution}
 
 \subsection{The Big Idea}
-The classification works by induction on the \emph{involution structure} of the group: understanding how elements of order 2 behave lets you identify which family a group belongs to. If a group has an involution whose centralizer is ``thin'' (meaning it has very constrained 2-local structure), you can identify it as a known family---cyclic, alternating, or Lie type. The proof is organized as a tree: at each branch, you analyze the involution centralizer and either classify the group or reduce to a smaller case. By the 1980s, almost all branches were closed. The final gap was the \emph{quasi-thin} case: groups whose 2-local structure sits at the boundary between ``thin'' and ``not thin,'' where the centralizer has enough structure to resist existing classification methods but not enough to fall into known families. Aschbacher and Smith's 2,000-page argument systematically eliminated every remaining possibility in this borderline case by combining three threads: local analysis of 2-subgroups, permutation group methods, and representation-theoretic arguments. The result: every finite simple group belongs to one of the four known families, with no exceptions.
+The classification was assembled by many mathematicians over decades using a wide range of methods, including local analysis of subgroups and involution centralizers. Aschbacher and Smith classified the remaining quasi-thin case, closing a major gap in the program; their work was not by itself the entire classification proof.
 
 \subsection{What Was Stopping Progress}
 The original classification proof spanned roughly 15,000 pages across 500+ papers. Individual pieces had been proved by many different groups, but the quasi-thin case---groups whose 2-local structure satisfies certain constraints---sat at the intersection of several technically demanding threads: local analysis of 2-subgroups, permutation group methods, and representation-theoretic arguments. Each thread had grown enormously in complexity over the decades, and no single team had the breadth of expertise to close the final gap without new ideas about how groups with small 2-local subgroups interact with the families already classified. It was like assembling a 10,000-piece puzzle where 9,990 pieces are in place but the last 10 require understanding how they connect to every other section of the picture.
@@ -171,7 +171,7 @@ The classification of finite simple groups is often called the ``Big Theorem'' o
 \section{Exercises}
 
 \begin{exercise}[Basic]
-Prove that $A_5$ is simple. \emph{Hint: Show that any nontrivial normal subgroup must contain a 3-cycle, and then use conjugation to show it contains all 3-cycles.}
+Prove that $A_5$ is simple. \emph{Hint: Use the possible cycle types in $A_5$ and their conjugacy-class sizes to rule out every proper union of nonidentity classes as a subgroup.}
 \end{exercise}
 
 \begin{exercise}[Intermediate]

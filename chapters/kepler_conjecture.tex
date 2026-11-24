@@ -57,7 +57,7 @@ The \emph{density} of a sphere packing in $\mathbb{R}^3$ is the proportion of sp
 \[\Delta(P) = \limsup_{R \to \infty} \frac{\text{volume of spheres in } B_R}{\text{volume of } B_R}\]
 \end{definition}
 
-The FCC packing arranges spheres in layers where each layer is a hexagonal lattice. The second layer sits in the depressions of the first, and the third layer is directly above the first (ABAB... stacking). The density is:
+The FCC packing has ABCABC layer stacking; ABAB stacking describes hexagonal close packing. Both have density:
 
 \begin{equation}
 \Delta_{FCC} = \frac{\pi}{\sqrt{18}} \approx 0.74048
@@ -85,13 +85,13 @@ Thomas Hales, at the University of Michigan, approached the problem by reducing 
 \section{The Solution}
 
 \subsection{The Big Idea}
-Hales's proof decomposes $\mathbb{R}^3$ into \textbf{Delaunay tetrahedra} whose vertices are sphere centers. Each tetrahedron gets a local density score: the fraction of its volume covered by sphere portions. The global packing density equals the average of all local scores. So proving no packing beats $\pi/\sqrt{18}$ reduces to showing no tetrahedron shape can score above that threshold. This is a finite problem: the set of possible tetrahedron shapes (up to scaling) is compact, and the density score is a continuous function on it. Hales turned it into a \textbf{linear program}: partition the shape space into $O(10^5)$ regions, and for each region prove the density is bounded above the threshold. The computer verified every region. Geometry posed the question; linear programming answered it; computation confirmed the answer.
+Hales's proof uses Voronoi and Delaunay decompositions, a carefully defined local score, geometric inequalities, and extensive computer-assisted checking. It is not a direct optimization over all tetrahedron shapes: admissible configurations and local bounds require substantial geometric analysis, including the decomposition into standard regions and a large collection of inequalities.
 
 \subsection{What Was Stopping Progress}
 Gauss had already proved that no neat \emph{grid-like} lattice packing beats the face-centered cubic arrangement. The real villain was disorder: what if someone jiggled the spheres into a weird, asymmetric pattern that secretly packed tighter? Analytic methods kept producing upper bounds that were too high---they couldn't tell the difference between the FCC density and something slightly denser. It was like trying to prove nobody can run a mile in under four minutes, but your stopwatch only reads to the nearest minute.
 
 \subsection{The Breakthrough}
-Hales realized that the entire infinite packing problem could be chopped into a finite---if enormous---checklist. By decomposing space into tetrahedra with sphere centers as vertices, he turned the density question into a linear programming problem: ``What is the maximum possible score for a single tetrahedron?'' A computer then exhaustively checked all 100,000 distinct tetrahedron shapes and confirmed that none exceeds the critical score. Geometry set up the right question; brute-force computing answered it.
+Hales reduced the infinite packing problem to a finite collection of geometric inequalities after a detailed decomposition and scoring argument. Computer calculations verified the resulting cases; they did not enumerate every tetrahedron shape.
 
 \subsection{How It Works}
 
@@ -104,8 +104,8 @@ Geometric and analytic methods---Rogers's sphere-bound techniques, general packi
 \subsection{What Was Novel}
 Hales's proof combined two ingredients that no one had previously brought together for this problem:
 \begin{enumerate}
-\item \textbf{Geometric reduction via Voronoi decomposition and linear programming:} Hales showed that any packing can be dissected into simplices whose vertices are sphere centers, and that the global density is bounded by a linear programming problem over the scores of these simplices. This converted the infinite-dimensional packing problem into a finite (but enormous) system of linear inequalities.
-\item \textbf{Massive computer verification:} The resulting linear program had to be checked over approximately 100,000 non-isomorphic cases, each involving thousands of variables. Hales wrote specialized software to perform these checks exhaustively---a proof that no human could carry out by hand.
+\item \textbf{Geometric reduction:} Voronoi/Delaunay methods and local score inequalities reduce the density bound to controlled local configurations.
+\item \textbf{Computer-assisted verification:} Specialized programs verified numerous rigorous inequalities arising from the geometric reduction.
 \end{enumerate}
 
 \subsection{Student-Friendly Explanation}
@@ -148,15 +148,15 @@ The Kepler conjecture is now completely settled. Hales's original proof was publ
 
 The proof had an outsized impact on the philosophy and practice of mathematics. Before Hales, computer-assisted proofs were viewed with suspicion by many mathematicians---if no human can check every step, is it really a proof? The Flyspeck project demonstrated that formal verification can provide certainty even when the underlying argument is too large for any individual to review, helping to legitimize computer-verified mathematics as a rigorous enterprise.
 
-The problem of sphere packing in other dimensions remains largely open. Maryna Viazovska proved in 2016 that the $E_8$ lattice gives the densest packing in dimension 8 and, with collaborators, that the Leech lattice is optimal in dimension 24. But in all other dimensions---3, 4, 5, 6, 7, 9, and beyond---the optimal packing is still unknown (the only dimensions where the answer is known are 1, 2, 3, 8, and 24). Viazovska's methods rely on even unimodular lattices, which exist only in dimensions divisible by 8, so new ideas will be needed for the remaining cases.
+Optimal unrestricted sphere packings are known in dimensions 1, 2, 3, 8, and 24. The problem remains open in other dimensions. Viazovska's proof uses modular-form-derived auxiliary functions; it is not based on a general requirement that candidate lattices be even unimodular.
 
 \section{Impact}
 
 \begin{itemize}
 \item \textbf{Computer-assisted proofs}: The Kepler proof sparked debate about the role of computers in mathematics. Is a proof valid if no human can check every step?
 \item \textbf{Formal verification}: The Flyspeck project pioneered techniques in formal proof verification that are now standard in the field.
-\item \textbf{Sphere packing in higher dimensions}: Hales's methods inspired advances in sphere packing in dimensions 8 and 24, where Maryna Viazovska made groundbreaking discoveries (2016) \cite{viazovska2017,cohn2017}.
-\item \textbf{Viazovska's breakthrough (2016)}: Maryna Viazovska proved optimal sphere packing in dimensions 8 (using the $E_8$ lattice) and dimension 24 (using the Leech lattice), building on Hales's framework but with elegant analytical methods. She received the Fields Medal in 2022 partly for this work.
+\item \textbf{Sphere packing in higher dimensions}: Viazovska's analytic auxiliary-function method proved optimality in dimension 8 and, with collaborators, in dimension 24 \cite{viazovska2017,cohn2017}.
+\item \textbf{Viazovska's breakthrough (2016)}: Viazovska proved optimal sphere packing in dimension 8; she and collaborators proved the dimension-24 result. Her work contributed to her 2022 Fields Medal.
 \end{itemize}
 
 \section{Computational Verification}

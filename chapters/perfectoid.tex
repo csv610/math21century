@@ -11,9 +11,9 @@
 
 \textbf{Given.} You are given a geometric object (a space of solutions to equations) defined over a $p$-adic number field---a number system that extends the integers using a prime $p$.
 
-\textbf{Goal.} Build a universal translation tool that converts problems from one number system (the $p$-adics) into equivalent problems in a completely different number system (characteristic $p$), so that hard tools from one side can be applied to the other.
+\textbf{Goal.} Construct a framework in which perfectoid geometry in mixed characteristic can be related to perfectoid geometry in characteristic $p$, while preserving important structural and cohomological information.
 
-\textbf{Constraints.} The bridge must work not just for individual spaces but for families of spaces, including singular and non-projective ones. It must preserve the cohomological invariants that number theorists care about. The construction must be functorial---it must respect the relationships between spaces.
+\textbf{Constraints.} Tilting applies to perfectoid spaces and their morphisms. It does not identify every rigid analytic space with a characteristic-$p$ space.
 
 \textbf{Example.} For a single smooth projective variety over a $p$-adic field, Fontaine's $p$-adic Hodge theory already provided a dictionary to characteristic $p$. The breakthrough was extending this to \emph{families} of spaces, which required the entirely new framework of perfectoid spaces.
 
@@ -64,7 +64,7 @@ Show that $\mathbb{C}_p$ is perfectoid. Why is $\mathbb{Q}_p$ not perfectoid?
 Scholze's fundamental construction: to any perfectoid field $K$ of characteristic $0$, associate a perfectoid field $K^\flat$ of characteristic $p$.
 
 \begin{definition}[Tilt]
-$K^\flat = \varprojlim_{x \mapsto x^p} K$, with valuation $|(x^{(n)})| = |x^{(0)}|$.
+$\mathcal O_{K^\flat}=\varprojlim_{x\mapsto x^p}\mathcal O_K/p$, with its standard multiplicative valuation; $K^\flat$ is the fraction field of this valuation ring. Equivalently, one may use the inverse limit of $\mathcal O_K$ under Frobenius and then quotient by the usual sharp map description.
 \end{definition}
 
 \begin{theorem}[Fontaine-Wintenberger / Scholze]
@@ -84,15 +84,15 @@ A locally ringed space $(X, \mathcal{O}_X)$ that is locally isomorphic to $\text
 
 Key properties:
 \begin{itemize}
-\item The category of perfectoid spaces contains all rigid analytic spaces over $\mathbb{Q}_p$ and $\mathbb{F}_p((t))$.
+\item Perfectoid spaces form a class of adic spaces; many rigid analytic spaces admit perfectoid covers, but are not themselves all perfectoid.
 \item There is a \emph{tilt functor} $(-)^{\flat}$ from char $0$ to char $p$ perfectoid spaces.
-\item \emph{Pro-\'etale site}: Scholze constructed a Grothendieck topology where $\mathcal{O}_X^+$ is acyclic, enabling p-adic Hodge theory in families.
+\item \emph{Pro-\'etale site}: this topology supports p-adic comparison theorems; acyclicity statements for $\mathcal{O}_X^+$ require hypotheses, such as affinoid perfectoid covers.
 \end{itemize}
 
 \section{The Solution}
 
 \subsection{The Big Idea}
-Number theory has two kinds of geometry: one over $p$-adic fields (characteristic 0, where $p$ is a prime) and one over $\mathbb{F}_p$ (characteristic $p$, where $p = 0$). Fontaine's $p$-adic Hodge theory provided a dictionary between them for individual smooth varieties, but the dictionary broke down for \emph{families} of spaces. Scholze's insight was to find the right algebraic operation---the \emph{tilt}---that takes any perfectoid field $K$ of characteristic 0 and produces a field $K^\flat = \varprojlim_{x \mapsto x^p} K$ of characteristic $p$ carrying exactly the same Galois groups and ramification data. The surprise: this is not just a field-level trick. Scholze showed it extends to \emph{spaces}: every perfectoid space of characteristic 0 has a tilt that is a perfectoid space of characteristic $p$, and the two have the same étale cohomology. The three ingredients are: (1)~the \textbf{tilt equivalence} $K \mapsto K^\flat$ at the field level, (2)~the category of \textbf{perfectoid spaces} that carry the tilt functor globally, and (3)~the \textbf{pro-étale topology} that makes $\mathcal{O}_X^+$ acyclic, so comparison isomorphisms extend to families. The result: a geometric framework where mixed characteristic and equal characteristic $p$ geometry are genuinely the same theory.
+For a perfectoid field $K$, tilting constructs a characteristic-$p$ field $K^\flat$ with equivalent finite-extension theory. This extends to an equivalence between perfectoid spaces over $K$ and over $K^\flat$, preserving their underlying topological spaces and relating their étale sites. The equivalence is powerful but applies within the perfectoid setting; it is not a universal equivalence of all analytic spaces or all cohomology theories.
 
 \subsection{What Was Stopping Progress}
 The existing dictionary (Fontaine's $p$-adic Hodge theory) could translate individual sentences---a single smooth variety over a $p$-adic field could be compared with its characteristic-$p$ shadow. But when you tried to translate \emph{families} of spaces---saying something about an entire family at once---the dictionary broke down. It was like having a word-by-word translator who can handle individual sentences but freezes when confronted with an entire novel. The tools of rigid analytic geometry were too rigid (pun intended): their underlying ``topology'' was too coarse to detect the fine arithmetic phenomena that needed translating.

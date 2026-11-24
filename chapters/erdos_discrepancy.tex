@@ -59,7 +59,7 @@ A sequence $x: \mathbb{N} \to \{-1, +1\}$ is \emph{completely multiplicative} if
 so the discrepancy is controlled by the partial sums of the original sequence.
 
 \begin{conjecture}[Erdős Discrepancy Conjecture]
-For any sequence $x_n \in \{-1, +1\}$, the discrepancy $D = \infty$.
+For every completely multiplicative sequence $x_n\in\{-1,+1\}$, its discrepancy $D=\sup_{d,N}\left|\sum_{k=1}^N x_{kd}\right|$ is infinite.
 \end{conjecture}
 
 \subsection{Connection to the Liouville Function}
@@ -86,7 +86,7 @@ Tao's proof combines a Fourier-analytic reduction to stochastic completely multi
 
 \subsection{How It Works}
 
-Before Tao, the Erd\H{o}s discrepancy conjecture had been open for 58 years. Partial results addressed special classes of sequences, but the core difficulty was proving that \emph{every} $\pm 1$ sequence, with no multiplicativity assumption, must eventually exhibit large partial sums along some arithmetic progression.
+Before Tao, the Erd\H{o}s discrepancy problem had been open for 58 years. Its hypothesis is complete multiplicativity; the theorem does not assert unbounded discrepancy for arbitrary sign sequences.
 
 Classical tools in combinatorics---the Beck--Fiala theorem, Spencer's ``six standard deviations suffice'' result, and Banaszczyk's bounds---address discrepancy for \emph{set systems} (bounded-degree hypergraphs) and produce bounds of the form $O(\sqrt{n})$ or $O(\sqrt{\log n})$. These methods are fundamentally ill-suited to the Erd\H{o}s problem because the ``set system'' here consists of \emph{all} arithmetic progressions, which have unbounded degree. Fourier analysis on the integers, while useful for detecting periodicity, cannot directly handle non-periodic completely multiplicative sequences. Purely combinatorial arguments lacked the leverage to force global unboundedness from local constraints.
 
@@ -124,7 +124,7 @@ Tao's proof was remarkable because it combined entropy methods, analytic number 
 \subsection{Subsequent Developments}
 \begin{itemize}
 \item \textbf{Polymath project}: Verified and streamlined the proof.
-\item \textbf{Quantitative bounds}: No explicit growth rate for discrepancy is known (the proof gives a tower-of-exponentials type bound).
+\item \textbf{Quantitative bounds}: Tao's theorem is qualitative and gives no explicit growth rate for the discrepancy.
 \item \textbf{Variants}: Erdős discrepancy for complex units, for sequences in $\{-1,0,1\}$, etc.
 \end{itemize}
 
@@ -132,7 +132,7 @@ Tao's proof was remarkable because it combined entropy methods, analytic number 
 
 The Erd\H{o}s discrepancy problem is completely settled: every completely multiplicative $\pm 1$ sequence has unbounded discrepancy. The conjecture is a theorem, and there is nothing left to prove about the qualitative question. The Polymath project verified and streamlined Tao's proof, making it accessible to a broader community.
 
-One important limitation is that the proof is non-constructive. It shows discrepancy must be infinite, but it does not say how fast it grows. The best bound coming from the proof is tower-of-exponentials: an absurdly fast-growing function that is far from what computer searches suggest. Computer experiments find sequences of length over 1000 with discrepancy 2, hinting that the true growth rate might be much slower. Determining the exact growth rate of the discrepancy is a major open problem.
+One important limitation is that the proof is qualitative. It shows discrepancy must be infinite, but does not give an explicit rate of growth. Finite searches can find long initial segments with small discrepancy, but they do not determine the asymptotic growth rate.
 
 Several natural extensions remain open. What happens if you allow the sequence values to be complex numbers on the unit circle instead of just $\pm 1$? What about sequences valued in $\{-1, 0, 1\}$? These variants have partial results but are not fully resolved. The entropy decrement technique that Tao introduced has also been applied to other problems in additive combinatorics---particularly to variants of Chowla's conjecture on correlations of the Liouville function---but the full range of consequences is still being explored.
 
@@ -238,7 +238,7 @@ print(f"Liouville function, N={N}, discrepancy (d<=100) = {D}")
 \end{verbatim}
 
 \begin{highlightbox}
-Students should run these scripts to observe: (1)~the Liouville function has slowly growing discrepancy, (2)~random completely multiplicative sequences tend to have low discrepancy for small $N$, and (3)~the growth rate of discrepancy is much slower than the tower-of-exponentials bound from Tao's proof.
+Students can compare finite truncations of these sequences. Such experiments cannot establish unboundedness or an asymptotic growth rate.
 \end{highlightbox}
 
 \section{Exercises}

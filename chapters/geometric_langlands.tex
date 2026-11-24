@@ -18,12 +18,12 @@
 \textbf{Example.} For the simplest group $GL_1$ (the multiplicative group), the correspondence was already understood classically---it relates line bundles on $X$ to connections on $X$. The deep content of the geometric Langlands program is what happens for larger groups like $GL_2$ and beyond, where the correspondence becomes far more intricate.
 
 \subsection{Formal}
-The geometric Langlands conjecture posits a correspondence between:
+One unramified formulation of geometric Langlands posits a correspondence between:
 \begin{itemize}
 \item \emph{Automorphic objects}: algebraic sheaves on the stack $\mathrm{Bun}_G$ of $G$-bundles on a smooth projective curve $X$
-\item \emph{Galois objects}: D-modules (or local systems) on the stack $\mathrm{Bun}_{^L G}$ of $^L G$-bundles on $X$
+\item \emph{Spectral objects}: quasi-coherent or ind-coherent sheaves on the stack $\mathrm{LocSys}_{^L G}(X)$ of $^L G$-local systems on $X$
 \end{itemize}
-where $^L G$ is the Langlands dual group of $G$. The conjecture asserts that these two categories are equivalent as $\ell$-adic derived categories.
+where $^L G$ is the Langlands dual group. Precise statements specify the ground field, sheaf theory, and singular-support conditions; they are not simply equivalent $\ell$-adic categories.
 
 \subsection{Historical Context}
 The geometric Langlands program was proposed by Drinfeld in 1987 and developed by Beilinson and Drinfeld in the 1990s \cite{drinfeld1987, beilinson2004}. It has become one of the deepest and most active areas of mathematics, connecting algebraic geometry, representation theory, and mathematical physics (particularly topological field theory).
@@ -92,7 +92,7 @@ In plain language: the conjecture says that the space of ``differential equation
 \section{The Solution}
 
 \subsection{The Big Idea}
-The geometric Langlands conjecture says: the derived category of D-modules on $\mathrm{Bun}_G$ is equivalent to the derived category of coherent sheaves on $\mathrm{LocSys}_{^LG}$. In plain terms (see ``What Are These Objects?'' above): the space of differential equations on $G$-bundles is the same as the space of parallel-transport rules for ${}^LG$-representations. The 2024 proof builds this equivalence in two steps. First, the \textbf{geometric Satake equivalence} (Mirkovi\'c--Vilonen) provides a local dictionary at each point of the curve: it identifies representations of ${}^LG$ with certain sheaves on the affine Grassmannian of $G$. Second, \textbf{factorization categories} glue these local dictionaries into a global equivalence. The proof required over 1,000 pages because the ``gluing grammar''---the categorical framework of ind-coherent sheaves on stacks---is vastly more sophisticated than ordinary category theory.
+The unramified geometric Langlands theorem is a precise categorical comparison between a specified category of D-modules on $\mathrm{Bun}_G$ and a specified category of sheaves on $\mathrm{LocSys}_{^LG}$. The recent proof uses a large categorical framework and spectral gluing. Geometric Satake is an important local input: an appropriate category of perverse sheaves on the affine Grassmannian is equivalent to representations of the dual group. It is not itself an equivalence between D-modules and representations.
 
 \subsection{What Was Stopping Progress}
 The classical Langlands program had established a dictionary between number-theoretic and geometric objects for the simplest case ($GL_1$) and some special groups, but the full conjecture---a categorical equivalence for \emph{all} reductive groups---required mathematical machinery that simply did not exist. The right language was not ordinary categories but \emph{derived categories of ind-coherent sheaves on stacks}, a vastly more sophisticated framework capable of handling singularities, non-properness, and infinite-dimensional objects. Previous approaches by Beilinson, Drinfeld, Laumon, and Rothstein built important pieces of the dictionary but could not assemble them into a complete translation. It was as if linguists had decoded individual words and grammar rules in two languages but had never produced a complete grammar that could translate any sentence.
@@ -165,7 +165,7 @@ The unramified geometric Langlands conjecture is settled for any reductive group
 
 The proof introduced powerful new categorical techniques---particularly the theory of ind-coherent sheaves and the spectral gluing construction---that have become tools in their own right. These methods are being applied to problems in derived algebraic geometry, topological field theory, and representation theory well beyond the original Langlands setting. The proof also deepened the connection between the Langlands program and physics, specifically to Chern--Simons theory and other topological field theories.
 
-The full \emph{ramified} geometric Langlands conjecture---where the curve is allowed to have singularities or marked points---remains open. The ramified case is substantially harder because the local data at each ramification point must be incorporated into the global equivalence. Connections to physics, particularly the precise relationship to topological quantum field theories and conformal field theories, are still being developed. Computational aspects---explicitly constructing the functors that realize the Langlands duality---are largely unexplored.
+Ramified geometric Langlands concerns added local data, such as marked points, parabolic structures, or prescribed ramification; it is not simply the case of singular curves. Its general forms remain active research topics.
 
 \section{Impact}
 

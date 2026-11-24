@@ -18,9 +18,7 @@
 \textbf{Example.} In the simplest case $n = 1$, the grid has 3 points: $\{0, 1, 2\}$. The progression $0, 1, 2$ satisfies $0 + 1 + 2 = 3 \equiv 0$, so you cannot pick all three. The largest valid collection has 2 points (for instance, $\{0, 1\}$). As $n$ grows, the question is how large a collection you can build relative to $3^n$.
 
 \subsection{Formal}
-\begin{conjecture}[Frankl-Graham-Rödl, 1987]
-$r_3(n) = o(3^n)$.
-\end{conjecture}
+The Frankl--Graham--Rödl conjecture asked for a bound $r_3(n)=O(c^n)$ for some fixed $c<3$. Meshulam had already proved the weaker density-zero estimate $r_3(n)=O(3^n/n)$.
 
 The trivial bound is $3^n$. Meshulam (1995) proved $r_3(n) \le 2 \cdot 3^n / n$, using Fourier analysis. The best pre-2016 bound was $r_3(n) \le 3^n / n^{1+c}$ for a small constant $c > 0$.
 
@@ -109,13 +107,13 @@ r_3(n) \le 3 \cdot 2.756^n.
 
 \subsection{The Big Idea}
 
-The cap set problem asks: how large can a subset of $\mathbb{F}_3^n$ be if it contains no three equally-spaced points? For decades, the best tools were \emph{two-dimensional}: Fourier analysis decomposes functions into waves (complex exponentials), and these waves can only see correlations between \emph{pairs} of points. But the cap set condition is inherently \emph{three-dimensional}---it involves \emph{triples} $(x, y, z)$ with $x + y + z = 0$. It is like trying to study a three-person relationship using only couple's therapy: the tool is structurally mismatched to the problem.
+The cap set problem asks: how large can a subset of $\mathbb{F}_3^n$ be if it contains no three equally-spaced points? For decades, the best tools were \emph{two-dimensional}: Fourier analysis can access higher-order correlations, but its classical bounds did not give the exponential improvement later obtained by slice rank. But the cap set condition is inherently \emph{three-dimensional}---it involves \emph{triples} $(x, y, z)$ with $x + y + z = 0$. It is like trying to study a three-person relationship using only couple's therapy: the tool is structurally mismatched to the problem.
 
-The breakthrough was to abandon Fourier analysis entirely and switch to \emph{polynomials}. A polynomial of low degree cannot vanish on too many points (Schwartz-Zippel), and the cap set condition forces the existence of such polynomials. Ellenberg and Gijswijt made this precise using \emph{slice rank}---a tensor generalization of matrix rank---which converts the cap set problem into a monomial counting exercise. The answer drops from $3^n$ to $2.756^n$, an exponential improvement.
+The breakthrough was to complement Fourier analysis with \emph{polynomials}. A polynomial of low degree cannot vanish on too many points (Schwartz-Zippel), and the cap set condition forces the existence of such polynomials. Ellenberg and Gijswijt made this precise using \emph{slice rank}---a tensor generalization of matrix rank---which converts the cap set problem into a monomial counting exercise. The answer drops from $3^n$ to $2.756^n$, an exponential improvement.
 
 \subsection{What Was Stopping Progress}
 
-Fourier analysis was the workhorse of additive combinatorics since Roth's 1953 theorem, and Meshulam (1995) used it to prove $r_3(n) \le 2 \cdot 3^n / n$ over $\mathbb{F}_3^n$. But this approach could only peel off polynomial factors from $3^n$---it could not achieve the subexponential bound the conjecture predicted. The reason is structural: Fourier characters are one-dimensional objects, while the cap set condition is a three-body constraint involving triples. Pl\"unnecke-Ruzsa and entropy methods had the same limitation: they are inherently ``lossy,'' discarding higher-order information at each step. Before 2016, the polynomial method had only been used in geometry (Dvir's Kakeya proof) and nobody had applied it to additive combinatorics over $\mathbb{F}_3^n$.
+Fourier analysis can study higher-order correlations, and Meshulam used it to prove $r_3(n)=O(3^n/n)$. That bound did not give the exponential improvement obtained by the polynomial and slice-rank method. It is inaccurate to say Fourier analysis can see only pairs.
 
 \subsection{The Breakthrough}
 
@@ -153,11 +151,11 @@ $r_3(n) \le 2.756^n$ for sufficiently large $n$.
 
 \subsection{After the Proof}
 
-The cap set problem is settled in the sense that an exponential upper bound $r_3(n) \le 2.756^n$ has been proved, replacing all previous bounds. However, the full conjecture---that cap sets should be subexponential ($2^{o(n)}$)---remains open. The gap between $2.756^n$ and the conjectured answer is still exponential, and removing the exponential dependence is a major open question. It is possible that the true growth rate is polynomial or even sub-polynomial, but no known technique can achieve this.
+Ellenberg and Gijswijt proved an exponential upper bound $r_3(n)\le C\,2.756^n$ for an absolute constant $C$. Cap sets also have exponential lower bounds, so subexponential growth is impossible. The precise exponential growth rate remains open.
 
 The slice rank method that cracked the cap set problem has been applied far beyond its original setting. It has been used to prove results about sunflowers, the Erd\H{o}s--Ginzburg--Ziv theorem, and other problems in additive combinatorics and theoretical computer science. The polynomial method, upgraded through slice rank, has become a standard tool alongside Fourier analysis and the probabilistic method in extremal combinatorics. It has connections to tensor complexity theory and the study of communication complexity.
 
-The central open question is whether the exponential bound can be improved to subexponential. The Ruzsa--Szemer\'{e}di conjecture (also known as the cap set conjecture in its original formulation) predicts that cap sets should be subexponential, and proving or disproving this remains one of the most important problems in additive combinatorics. Understanding the limitations of the polynomial method---why it gives $2.756^n$ rather than something smaller---is itself a deep question. New techniques beyond slice rank may be needed to break the exponential barrier.
+The precise exponential growth rate between known lower and upper bounds remains open. The Frankl--Graham--Rödl conjecture was the existence of some exponential upper bound with base below 3, and Ellenberg--Gijswijt proved it.
 
 \section{Impact}
 \begin{itemize}
@@ -190,8 +188,8 @@ def f3_vectors(n):
     """Generate all vectors in F_3^n."""
     return list(product(range(3), repeat=n))
 
-def max_cap_set_size(n):
-    """Find the maximum cap set size in F_3^n via greedy search."""
+def greedy_cap_set(n):
+    """Construct a cap set greedily; this need not be maximum."""
     vectors = f3_vectors(n)
     best = []
     # Greedy: add vectors one by one if they don't create a 3-AP
@@ -202,7 +200,7 @@ def max_cap_set_size(n):
     return len(best), best
 
 for n in range(1, 5):
-    size, cap = max_cap_set_size(n)
+    size, cap = greedy_cap_set(n)
     bound = 3**n
     print(f"F_3^{n}: max cap set size = {size} / {bound} = {size/bound:.4f}")
 \end{verbatim}
@@ -224,7 +222,7 @@ for n in range(1, 8):
 def count_monomials(n):
     """Count monomials in F_3[x_1,...,x_n] with degree < 2n/3."""
     count = 0
-    for deg in range(2 * n // 3):
+    for deg in range((2 * n + 2) // 3):
         # Number of monomials of exact degree deg in n variables over F_3
         # Each variable has exponent 0, 1, or 2
         count += sum(1 for comps in product(range(3), repeat=n)
@@ -237,7 +235,7 @@ for n in [3, 6, 9, 12]:
 \end{verbatim}
 
 \begin{highlightbox}
-Students should run these scripts to observe: (1)~the greedy algorithm finds cap sets whose sizes approach but don't reach the theoretical bound, (2)~the ratio $|A|/3^n$ decreases as $n$ grows, confirming the subexponential conjecture, and (3)~the monomial counting exercise makes the slice rank argument concrete.
+Treat the greedy output as a lower-bound construction only. Finite computations do not establish an asymptotic growth rate or confirm a conjecture.
 \end{highlightbox}
 
 \section{Exercises}
